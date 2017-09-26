@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017.09.25 21:03:06.970.cpp,C:\Users\ds\Documents\RAD Studio\Projects\Unit1.cpp=C:\CBuilder5\Projects\AntiWebMiner\main.cpp</Transaction>
+    <Transaction>2017.09.25 21:03:06.970.h,C:\Users\ds\Documents\RAD Studio\Projects\Unit1.h=C:\CBuilder5\Projects\AntiWebMiner\main.h</Transaction>
+    <Transaction>2017.09.25 21:03:06.970.dfm,C:\Users\ds\Documents\RAD Studio\Projects\Unit1.dfm=C:\CBuilder5\Projects\AntiWebMiner\main.dfm</Transaction>
+    <Transaction>2017.09.25 21:03:17.212.cbproj,C:\Users\ds\Documents\RAD Studio\Projects\Project1.cbproj=C:\CBuilder5\Projects\AntiWebMiner\AntiWebMiner.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>
