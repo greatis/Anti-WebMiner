@@ -1,5 +1,4 @@
 *.~*
-*.txt
 *.rar
 *.7z
 *.bmp
@@ -37,7 +36,6 @@ Web Data
 atapi.sys
 symmpi.sy_
 ATAPI.SY_
-*.txt
 regguard.sy
 BlogPost.str
 *.rr2

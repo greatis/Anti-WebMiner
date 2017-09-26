@@ -32,6 +32,12 @@ private:	// User declarations
 		  bool __fastcall TfrmMain::RemoveOurStringsFromHostsStrings(int iStart, int iFinish);
 		  bool __fastcall TfrmMain::BackupHostsFile(bool bOverWritePrevious);
 		  bool __fastcall TfrmMain::SaveHostsFile();
+		  bool __fastcall TfrmMain::ReadRawStringsFromIniFile(String FileName, String Section, TStringList *strOut);
+
+		  String __fastcall TfrmMain::ReadBlackListFile(String sFile, TStringList *strOut);
+		  bool __fastcall TfrmMain::IsRemoteVersLarger(String RemoteVers, String LocalVers);
+		  String __fastcall TfrmMain::sGetBlackListVersion(String sFile);
+		  String __fastcall TfrmMain::sGetBlackListFilePath();
 
 
 
@@ -47,4 +53,6 @@ extern PACKAGE TfrmMain *frmMain;
 #define MAIN_LABEL  String("Anti-WebMiner")
 #define START_LABEL MAIN_LABEL+String(" Start")
 #define FIN_LABEL MAIN_LABEL+String(" End")
+
+#define BLACKLIST_DB String("blacklist.txt")
 #endif

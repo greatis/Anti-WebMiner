@@ -1,6 +1,7 @@
 //---------------------------------------------------------------------------
 
 #include <vcl.h>
+#include <vcl\inifiles.hpp>
 #pragma hdrstop
 
 #include "main.h"
@@ -16,7 +17,7 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 	LogFileName=ExtractFilePath(ParamStr(0))+"debug.log";
 	bDebugMode=true;
 	strHosts=new TStringList;
-	sDBVersion="1.0";
+	sDBVersion="";
 
  if(bDebugMode)
  {
@@ -60,7 +61,18 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 
 					   String sCurVersion=	sGetOurVersionFromHosts(iStart);
 						WriteLogMessage("Our Current Version= "+sCurVersion);
+
+						sDBVersion=sGetBlackListVersion(sGetBlackListFilePath());
+						WriteLogMessage("Black List Version= "+sDBVersion);
+
+						if(!IsRemoteVersLarger( sDBVersion,  sDBVersion))
+						{
+						  bNeedUpdateHosts=false;
+						}
+
+
 					}
+
 
 			   }
 			   else
@@ -76,8 +88,13 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 		 try
 		 {
 			strServList=new TStringList;
+
+			strServList->Sorted=true;
+			strServList->Duplicates=dupIgnore;
 			strServList->Add("coin-hive.com");
-		   //	strServList->Add("jsecoin.com");
+			strServList->Add("jsecoin.com");
+
+			ReadBlackListFile(ExtractFilePath(ParamStr(0))+BLACKLIST_DB, strServList);
 
 			AddServerListTopHostsStrings(  strServList);
 			SaveHostsFile();
@@ -416,4 +433,283 @@ bool __fastcall TfrmMain::BackupHostsFile(bool bOverWritePrevious)
 	 }
 
 	 return bResult;
+}
+
+
+String __fastcall TfrmMain::ReadBlackListFile(String sFile, TStringList *strOut)
+{
+ if(sFile.IsEmpty() || (strOut==NULL))
+ {
+  return "";
+ }
+  TIniFile *tif=NULL;
+
+  String sResult;
+  try
+  {
+	tif=new TIniFile(sFile);
+	if(!tif->SectionExists(MAIN_LABEL))
+	{
+		if(bDebugMode)
+		{
+		  WriteLogMessage("ReadBlackListFile: File is not a black list: "+sFile);
+		}
+	}
+	else
+	{
+	  sResult=tif->ReadString( MAIN_LABEL,"Version","");
+
+
+
+	}
+  }
+  catch(...)
+  {
+  }
+
+  try
+  {
+	delete tif;
+  }
+  catch(...)
+  {
+  }
+
+
+
+  try
+  {
+	  if(sResult.IsEmpty())
+	  {
+		if(bDebugMode)
+		{
+		  WriteLogMessage("ReadBlackListFile: Version is not found in black list: "+sFile);
+		}
+	  }
+	  else
+	  {
+		 ReadRawStringsFromIniFile(sFile,"Hosts",strOut);
+	  }
+
+  }
+  catch(...)
+  {
+  }
+
+
+
+  return sResult;
+}
+
+
+bool __fastcall TfrmMain::ReadRawStringsFromIniFile(String FileName, String Section, TStringList *strOut)
+{
+ if(Section.IsEmpty())
+  return false;
+ if(strOut==NULL)
+  return false;
+  if(FileName.IsEmpty())
+   return false;
+   if(!FileExists(FileName))
+	return false;
+
+	try
+    {
+     strOut->Clear();
+    }
+	catch(...)
+    {
+    }
+ bool bResult=false;
+ TStringList *str=NULL;
+ int i;
+ int iBeg=-1;
+ String sSectString=  String("["+Section+"]").UpperCase();
+  try
+  {
+   str=new  TStringList;
+   str->LoadFromFile(FileName);
+   for(i=0;i<str->Count;i++)
+   {
+    if(str->Strings[i].UpperCase()==sSectString)
+    {
+      iBeg=i+1;
+      break;
+    }
+   }
+   if(iBeg>=0)
+   {
+     for(i=iBeg;i<str->Count;i++)
+     {
+      if(str->Strings[i].SubString(1,1)=="[")
+      {
+       break;
+      }
+	  if(!str->Strings[i].IsEmpty())
+	  {
+	   strOut->Add(str->Strings[i].Trim());
+	   bResult=true;
+	  }
+     }
+   }
+  }
+  catch(...)
+  {
+  }
+
+  delete str;
+  return bResult;
+
+}
+
+
+
+bool __fastcall TfrmMain::IsRemoteVersLarger(String RemoteVers, String LocalVers)
+{
+   if(RemoteVers==LocalVers)
+	return true;
+
+ String sRemote, sLocal, str;
+ String sTemp;
+ bool bResult=true;
+   int val_remote, val_local;
+   int pos_remote, pos_local;
+ bool bCompareStrings=false;
+ try
+ {
+   sRemote=RemoteVers.Trim();
+   sLocal=LocalVers.Trim();
+   do
+   {
+     pos_remote= sRemote.Pos(".");
+     if(pos_remote>0)
+     {
+       sTemp=sRemote.SubString(1,pos_remote-1);
+       sRemote=sRemote.SubString(pos_remote+1,sRemote.Length());
+     }
+     else
+     {
+       pos_remote= sRemote.Pos(" ");
+       if(pos_remote>0)
+       {
+        sTemp=sRemote.SubString(1,pos_remote-1);
+        sRemote=sRemote.SubString(pos_remote+1,sRemote.Length());
+
+       }
+       else
+       {
+        sTemp=sRemote;
+        sRemote="";
+       }
+     }
+     try
+     {
+      val_remote=sTemp.ToInt();
+     }
+     catch(...)
+     {
+       bCompareStrings=true;
+       sRemote=sTemp;
+     }
+     pos_local= sLocal.Pos(".");
+     if(pos_local>0)
+     {
+       sTemp=sLocal.SubString(1,pos_local-1);
+       sLocal=sLocal.SubString(pos_local+1,sLocal.Length());
+     }
+     else
+     {
+      pos_local= sLocal.Pos(" ");
+      if(pos_local>0)
+      {
+       sTemp=sLocal.SubString(1,pos_local-1);
+       sLocal=sLocal.SubString(pos_local+1,sLocal.Length());
+      }
+      else
+      {
+       sTemp=sLocal;
+       sLocal="";
+      }
+     }
+     try
+     {
+      val_local=sTemp.ToInt();
+     }
+     catch(...)
+     {
+       bCompareStrings=true;
+       sLocal=sTemp;
+     }
+     if(  bCompareStrings)
+     {
+       if(sLocal.CompareIC(sRemote)<0)
+        return false;
+       else
+        return true;
+     }
+
+     if( val_local<val_remote)
+      return false;
+    if( val_local>val_remote)
+      return true;
+
+   }while((!sRemote.IsEmpty()) && (!sLocal.IsEmpty()));
+
+ // bad alg
+ }
+ catch(...)
+ {
+ }
+
+  return bResult;
+}
+
+
+String __fastcall TfrmMain::sGetBlackListVersion(String sFile)
+{
+ if(sFile.IsEmpty())
+ {
+  return "";
+ }
+  TIniFile *tif=NULL;
+
+  String sResult;
+  try
+  {
+	tif=new TIniFile(sFile);
+	if(!tif->SectionExists(MAIN_LABEL))
+	{
+		if(bDebugMode)
+		{
+		  WriteLogMessage("ReadBlackListFile: File is not a black list: "+sFile);
+		}
+	}
+	else
+	{
+	  sResult=tif->ReadString( MAIN_LABEL,"Version","");
+
+
+
+	}
+  }
+  catch(...)
+  {
+  }
+
+  try
+  {
+	delete tif;
+  }
+  catch(...)
+  {
+  }
+
+  return sResult;
+}
+
+String __fastcall TfrmMain::sGetBlackListFilePath()
+{
+
+ return ExtractFilePath(ParamStr(0))+BLACKLIST_DB;
+
 }

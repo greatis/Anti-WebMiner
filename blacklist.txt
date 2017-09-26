@@ -1,0 +1,14 @@
+[Anti-WebMiner]
+Version=1.0
+[Hosts]
+cnhv.co
+gus.host
+jsecoin.com
+miner.pr0gramm.com
+coin-hive.com
+jsecoin.com
+reasedoper.pw
+mataharirama.xyz
+listat.biz
+lmodr.biz
+minecrunch.co
