@@ -61,17 +61,19 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
-			<CppCompile Include="AntiWebMiner.cpp">
-				<BuildOrder>0</BuildOrder>
-			</CppCompile>
-			<ResFiles Include="AntiWebMiner.res">
-				<ModuleName>AntiWebMiner.res</ModuleName>
-				<BuildOrder>1</BuildOrder>
-			</ResFiles>
 			<CppCompile Include="main.cpp">
 				<Form>frmMain</Form>
 				<DependentOn>main.h</DependentOn>
 				<BuildOrder>2</BuildOrder>
+			</CppCompile>
+			<ResFiles Include="AntiWebMiner.res">
+				<BuildOrder>1</BuildOrder>
+			</ResFiles>
+			<CppCompile Include="AntiWebMiner.cpp">
+				<BuildOrder>0</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="SSLCon.cpp">
+				<BuildOrder>3</BuildOrder>
 			</CppCompile>
 			<FormResources Include="main.dfm"/>
 			<BuildConfiguration Include="Base">
@@ -158,6 +160,9 @@
 						<Excluded_Packages Name="$(BDS)\bin\dclofficexp120.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
 						<Excluded_Packages Name="C:\Program Files\tmsssoftware\TMS Component Pack\Builder2009\TMSDeD2009.bpl">TMS Component Pack design time support</Excluded_Packages>
 					</Excluded_Packages>
+					<Language>
+						<Language Name="RootDir">C:\CBuilder5\Projects\AntiWebMiner\</Language>
+					</Language>
 				</CPlusPlusBuilder.Personality>
 			</BorlandProject>
 			<ProjectFileVersion>12</ProjectFileVersion>

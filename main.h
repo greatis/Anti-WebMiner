@@ -8,16 +8,32 @@
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
 //---------------------------------------------------------------------------
+
+class TSSLThread : public TThread
+{
+private:
+   String FURL;
+
+protected:
+		void __fastcall TSSLThread::Execute();
+public:
+  __fastcall TSSLThread::TSSLThread(bool CreateSuspended, String URL);
+
+   String FResult;
+   int iResult;
+
+};
+
 class TfrmMain : public TForm
 {
 __published:	// IDE-managed Components
 private:	// User declarations
 
-		  String LogFileName;
-		  bool bDebugMode;
 		  TStringList *strHosts;
 		  String sDBVersion;
 		  String sHostsPath;
+
+		  TSSLThread *FThread;
 
 		  String __fastcall TfrmMain::sExpandEnvStrings(String sSource);
 		  String __fastcall TfrmMain::sGetHostsPath();
@@ -39,21 +55,31 @@ private:	// User declarations
 		  bool __fastcall TfrmMain::IsRemoteVersLarger(String RemoteVers, String LocalVers);
 		  String __fastcall TfrmMain::sGetBlackListVersion(String sFile);
 		  String __fastcall TfrmMain::sGetBlackListFilePath();
-
+		  void __fastcall TfrmMain::CheckUpdate();
+		  void __fastcall TfrmMain::ThreadDone(TObject *Sender);
+		  String __fastcall TfrmMain::sGetDBVersionFromStrings(TStringList *str);
 
 
 public:		// User declarations
 	__fastcall TfrmMain(TComponent* Owner);
 	__fastcall TfrmMain::~TfrmMain();
 
-	void __fastcall TfrmMain::WriteLogMessage(AnsiString sText);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TfrmMain *frmMain;
 //---------------------------------------------------------------------------
+
+int __fastcall GetInternetRequest(String sURL, String &sOutResult);
+void __fastcall WriteLogMessage(AnsiString sText);
+
 #define MAIN_LABEL  String("Anti-WebMiner")
 #define START_LABEL MAIN_LABEL+String(" Start")
 #define FIN_LABEL MAIN_LABEL+String(" End")
 
 #define BLACKLIST_DB String("blacklist.txt")
+
+#define URL_BLACKLIST String("https://raw.githubusercontent.com/greatis/Anti-WebMiner/master/blacklist.txt")
+
+
+
 #endif
