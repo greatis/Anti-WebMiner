@@ -27,7 +27,8 @@ private:	// User declarations
 		  int __fastcall TfrmMain::sGetOurStartPosInHosts();
 		  int __fastcall TfrmMain::sGetOurFinalPosInHosts(int iStart);
 
-		  String __fastcall TfrmMain::sGetOurVersionFromHosts(int iStart);
+		  String __fastcall TfrmMain::sGetOurVersionFromHosts(int iStartRow, int &iOutInstallDate);
+
 		  bool __fastcall TfrmMain::AddServerListTopHostsStrings(TStringList *strIn);
 		  bool __fastcall TfrmMain::RemoveOurStringsFromHostsStrings(int iStart, int iFinish);
 		  bool __fastcall TfrmMain::BackupHostsFile(bool bOverWritePrevious);

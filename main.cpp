@@ -59,8 +59,18 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 					   iEnd=sGetOurFinalPosInHosts(iStart);
 						WriteLogMessage("Our End Row= "+String(iEnd));
 
-					   String sCurVersion=	sGetOurVersionFromHosts(iStart);
+						int iInstallDate=0;
+					   String sCurVersion=	sGetOurVersionFromHosts( iStart, iInstallDate);
+
 						WriteLogMessage("Our Current Version= "+sCurVersion);
+
+						WriteLogMessage("Install Date= "+String(iInstallDate));
+						if(iInstallDate>0)
+						{
+						  TDateTime td= (TDateTime)iInstallDate;
+						  WriteLogMessage(td.DateTimeString());
+						}
+
 
 						sDBVersion=sGetBlackListVersion(sGetBlackListFilePath());
 						WriteLogMessage("Black List Version= "+sDBVersion);
@@ -284,13 +294,13 @@ int __fastcall TfrmMain::sGetOurFinalPosInHosts(int iStart)
 }
 
 
-String __fastcall TfrmMain::sGetOurVersionFromHosts(int iStart)
+String __fastcall TfrmMain::sGetOurVersionFromHosts(int iStartRow, int &iOutInstallDate)
 {
  String sResult;
 
   try
   {
-   String sTemp=strHosts->Strings[iStart];
+   String sTemp=strHosts->Strings[iStartRow];
    String sLex=START_LABEL;
 	int n_pos=sTemp.Pos(sLex);
 	if(n_pos>0)
@@ -301,9 +311,22 @@ String __fastcall TfrmMain::sGetOurVersionFromHosts(int iStart)
 	   n_pos=sTemp.Pos(" ");
 	   if(n_pos>0)
 	   {
+		 String sDate=sTemp.SubString(n_pos+1, sTemp.Length());
+		 sDate=sDate.Trim();
+
 		 sTemp=sTemp.SubString(1,n_pos-1);
 		  sTemp=sTemp.Trim();
 
+		  if(!sDate.IsEmpty())
+		  {
+			try
+			{
+			  iOutInstallDate=sDate.ToInt();
+			}
+			catch(...)
+			{
+			}
+		  }
 	   }
 	   sResult=sTemp;
 	}
@@ -331,7 +354,7 @@ bool __fastcall TfrmMain::AddServerListTopHostsStrings(TStringList *strIn)
   bool bResult=false;
   try
   {
-	   strHosts->Add(String("# ")+String(START_LABEL)+" "+sDBVersion+" "+Now().DateTimeString());
+	   strHosts->Add(String("# ")+String(START_LABEL)+" "+sDBVersion+" "+String((int)Now()));
 	   for(int i=0;i<strIn->Count;i++)
 	   {
 		 strHosts->Add("0.0.0.0 "+strIn->Strings[i]);
