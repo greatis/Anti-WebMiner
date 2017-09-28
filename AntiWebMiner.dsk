@@ -1,19 +1,23 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'C:\CBuilder5\Projects\bootracer\bootrace\db\dbtesting.cpp',0,1,305,21,316,0,0,,{1
-File_1=TSourceModule,'C:\Program Files\CodeGear\RAD Studio\6.0\source\database\DBXCommon.pas',0,1,4709,55,4716,0,0,,
-File_2=TSourceModule,'c:\program files\codegear\rad studio\6.0\source\Win32\db\DB.pas',0,1,3043,1,3064,0,0,,
-File_3=TSourceModule,'C:\Program Files\CodeGear\RAD Studio\6.0\source\database\SqlExpr.pas',0,1,2510,1,2528,0,0,,
-File_4=TSourceModule,'c:\program files\codegear\rad studio\6.0\SOURCE\WIN32\RTL\SYS\System.pas',0,1,14439,16,14446,0,0,,
-File_5=TSourceModule,'c:\program files\codegear\rad studio\6.0\include\vcl\dstring.h',0,1,339,1,356,0,0,,
-File_6=TSourceModule,'C:\Program Files\CodeGear\RAD Studio\6.0\comp\smooth\AdvSmoothTabPager.pas',0,1,658,1,676,0,0,,
-File_7=TSourceModule,'c:\program files\codegear\rad studio\6.0\SOURCE\WIN32\VCL\Controls.pas',0,1,8668,1,8686,0,0,,{1
-File_8=TSourceModule,'C:\CBuilder5\Projects\vista_logon\visla\about.cpp',0,1,41,1,45,0,0,,
-File_9=TSourceModule,'C:\CBuilder5\Projects\vista_logon\visla\visl.cpp',0,1,2745,62,2817,0,0,,{1
+File_0=TSourceModule,'c:\program files (x86)\codegear\rad studio\6.0\include\vcl\ustring.h',0,1,50,1,70,0,0,,
+File_1=TSourceModule,'C:\CBuilder5\Projects\bootracer\bootrace\db\dbtesting.cpp',0,1,305,21,316,0,0,,{1
+File_2=TSourceModule,'C:\Program Files\CodeGear\RAD Studio\6.0\source\database\DBXCommon.pas',0,1,4709,55,4716,0,0,,
+File_3=TSourceModule,'c:\program files\codegear\rad studio\6.0\source\Win32\db\DB.pas',0,1,3043,1,3064,0,0,,
+File_4=TSourceModule,'C:\Program Files\CodeGear\RAD Studio\6.0\source\database\SqlExpr.pas',0,1,2510,1,2528,0,0,,
+File_5=TSourceModule,'c:\program files\codegear\rad studio\6.0\SOURCE\WIN32\RTL\SYS\System.pas',0,1,14439,16,14446,0,0,,
+File_6=TSourceModule,'c:\program files\codegear\rad studio\6.0\include\vcl\dstring.h',0,1,339,1,356,0,0,,
+File_7=TSourceModule,'C:\Program Files\CodeGear\RAD Studio\6.0\comp\smooth\AdvSmoothTabPager.pas',0,1,658,1,676,0,0,,
+File_8=TSourceModule,'c:\program files\codegear\rad studio\6.0\SOURCE\WIN32\VCL\Controls.pas',0,1,8668,1,8686,0,0,,{1
+File_9=TSourceModule,'C:\CBuilder5\Projects\vista_logon\visla\about.cpp',0,1,41,1,45,0,0,,
 
 [Modules]
 Module0=C:\CBuilder5\Projects\AntiWebMiner\main.cpp
-Module1=default.htm
-Count=2
+Module1=C:\CBuilder5\Projects\AntiWebMiner\SSLCon.cpp
+Module2=C:\CBuilder5\Projects\AntiWebMiner\AntiWebMiner.cbproj
+Module3=C:\CBuilder5\Projects\AntiWebMiner\SSLCon.h
+Module4=C:\CBuilder5\Projects\AntiWebMiner\StdAfxs.h
+Module5=default.htm
+Count=6
 EditWindowCount=1
 
 [C:\CBuilder5\Projects\AntiWebMiner\main.cpp]
@@ -21,15 +25,37 @@ ModuleType=TSourceModule
 FormState=1
 FormOnTop=0
 
+[C:\CBuilder5\Projects\AntiWebMiner\SSLCon.cpp]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
+
+[C:\CBuilder5\Projects\AntiWebMiner\AntiWebMiner.cbproj]
+ModuleType=TBaseProject
+
+[C:\CBuilder5\Projects\AntiWebMiner\SSLCon.h]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
+
+[C:\CBuilder5\Projects\AntiWebMiner\StdAfxs.h]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
+
 [default.htm]
 ModuleType=TURLModule
 
 [EditWindow0]
-ViewCount=3
+ViewCount=7
 CurrentEditView=C:\CBuilder5\Projects\AntiWebMiner\main.cpp
 View0=0
 View1=1
 View2=2
+View3=3
+View4=4
+View5=5
+View6=6
 PercentageSizes=1
 Create=1
 Visible=1
@@ -49,16 +75,16 @@ BorlandEditorCodeExplorer=BorlandEditorCodeExplorer@EditWindow0
 TopPanelSize=0
 LeftPanelSize=1891
 LeftPanelClients=PropertyInspector,DockSite3
-LeftPanelData=00000800C8C800000000900F00000000000001630700000000000001000000005C0E000009000000446F636B53697465330100000000AB1B00001100000050726F7065727479496E73706563746F72FFFFFFFF
+LeftPanelData=00000800888800000000900F00000000000001630700000000000001000000005C0E000009000000446F636B53697465330100000000AB1B00001100000050726F7065727479496E73706563746F72FFFFFFFF
 RightPanelSize=2000
 RightPanelClients=DockSite2,ToolForm
-RightPanelData=00000800F8F800000000900F00000000000001D00700000000000001000000004412000009000000446F636B53697465320100000000AB1B000008000000546F6F6C466F726DFFFFFFFF
+RightPanelData=00000800989800000000900F00000000000001D00700000000000001000000004412000009000000446F636B53697465320100000000AB1B000008000000546F6F6C466F726DFFFFFFFF
 BottomPanelSize=1806
 BottomPanelClients=MessageView@EditWindow0,DockSite1
-BottomPanelData=0000080028280100000009000000446F636B53697465317245000000000000020E070000000000000100000000724500000B0000004D65737361676556696577FFFFFFFF
+BottomPanelData=000008008888000000007245000000000000020E070000000000000100000000B92200000B0000004D6573736167655669657701000000007245000009000000446F636B5369746531FFFFFFFF
 BottomMiddlePanelSize=0
 BottomMiddlePanelClients=DockSite0
-BottomMiddelPanelData=0000080028280100000009000000446F636B53697465302C1900000000000000741B000000000000FFFFFFFF
+BottomMiddelPanelData=00000800E8E80100000009000000446F636B53697465302C1900000000000000741B000000000000FFFFFFFF
 
 [View0]
 CustomEditViewType=TWelcomePageView
@@ -70,16 +96,61 @@ CustomEditViewType=TDisassemblyEditView
 [View2]
 CustomEditViewType=TEditView
 Module=C:\CBuilder5\Projects\AntiWebMiner\main.cpp
-CursorX=65
-CursorY=94
-TopLine=77
+CursorX=9
+CursorY=948
+TopLine=922
 LeftCol=1
 Elisions=
-Bookmarks={1,457,1}{2,97,13}
+Bookmarks={1,949,1}{2,951,34}
 EditViewName=C:\CBuilder5\Projects\AntiWebMiner\main.cpp
 
+[View3]
+CustomEditViewType=TEditView
+Module=C:\CBuilder5\Projects\AntiWebMiner\AntiWebMiner.cpp
+CursorX=1
+CursorY=9
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=C:\CBuilder5\Projects\AntiWebMiner\AntiWebMiner.cpp
+
+[View4]
+CustomEditViewType=TEditView
+Module=C:\CBuilder5\Projects\AntiWebMiner\SSLCon.cpp
+CursorX=1
+CursorY=300
+TopLine=268
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=C:\CBuilder5\Projects\AntiWebMiner\SSLCon.cpp
+
+[View5]
+CustomEditViewType=TEditView
+Module=C:\CBuilder5\Projects\AntiWebMiner\StdAfxs.h
+CursorX=17
+CursorY=12
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=C:\CBuilder5\Projects\AntiWebMiner\StdAfxs.h
+
+[View6]
+CustomEditViewType=TEditView
+Module=C:\CBuilder5\Projects\AntiWebMiner\SSLCon.h
+CursorX=24
+CursorY=38
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=C:\CBuilder5\Projects\AntiWebMiner\SSLCon.h
+
 [Watches]
-Count=0
+Count=1
+Watch0='TSSLThread',256,0,18,1,0,'Watches'
 
 [WatchWindow]
 WatchColumnWidth=120
@@ -91,11 +162,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=3828
+Width=5000
 Height=1413
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=3828
+ClientWidth=5000
 ClientHeight=1413
 TBDockHeight=212
 LRDockWidth=13604
@@ -103,10 +174,16 @@ Dockable=1
 StayOnTop=0
 
 [Breakpoints]
-Count=3
-Breakpoint0='C:\CBuilder5\Projects\AntiWebMiner\main.cpp',43,'',0,1,'',1,0,0,'',1,'','','',0
-Breakpoint1='C:\CBuilder5\Projects\AntiWebMiner\main.cpp',97,'',0,1,'',1,0,0,'',1,'','','',0
-Breakpoint2='C:\CBuilder5\Projects\AntiWebMiner\main.cpp',68,'',0,1,'',1,0,0,'',1,'','','',0
+Count=9
+Breakpoint0='C:\CBuilder5\Projects\AntiWebMiner\main.cpp',119,'',0,1,'',1,0,0,'',1,'','','',0
+Breakpoint1='C:\CBuilder5\Projects\AntiWebMiner\main.cpp',90,'',0,1,'',1,0,0,'',1,'','','',0
+Breakpoint2='C:\CBuilder5\Projects\AntiWebMiner\main.cpp',74,'',0,1,'',1,0,0,'',1,'','','',0
+Breakpoint3='C:\CBuilder5\Projects\AntiWebMiner\main.cpp',889,'',0,1,'',1,0,0,'',1,'','','',0
+Breakpoint4='C:\CBuilder5\Projects\AntiWebMiner\main.cpp',47,'',0,1,'',1,0,0,'',1,'','','',0
+Breakpoint5='C:\CBuilder5\Projects\AntiWebMiner\main.cpp',45,'',0,1,'',1,0,0,'',1,'','','',0
+Breakpoint6='C:\CBuilder5\Projects\AntiWebMiner\main.cpp',959,'',0,1,'',1,0,0,'',1,'','','',0
+Breakpoint7='C:\CBuilder5\Projects\AntiWebMiner\main.cpp',951,'',0,1,'',1,0,0,'',1,'','','',0
+Breakpoint8='C:\CBuilder5\Projects\AntiWebMiner\main.cpp',944,'',0,1,'',1,0,0,'',1,'','','',0
 
 [AddressBreakpoints]
 Count=0
@@ -129,7 +206,7 @@ ClientWidth=10000
 ClientHeight=9779
 BottomPanelSize=8917
 BottomPanelClients=EditWindow0
-BottomPanelData=00000800E8E80000000000000000000000000000000000000000000100000000000000000C0000004564697457696E646F775F30FFFFFFFF
+BottomPanelData=00000800A8A80000000000000000000000000000000000000000000100000000000000000C0000004564697457696E646F775F30FFFFFFFF
 
 [ProjectManager]
 PercentageSizes=1
@@ -199,11 +276,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=3828
+Width=5000
 Height=1413
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=3828
+ClientWidth=5000
 ClientHeight=1413
 TBDockHeight=413
 LRDockWidth=4953
@@ -218,11 +295,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=3828
+Width=5000
 Height=1413
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=3828
+ClientWidth=5000
 ClientHeight=1413
 TBDockHeight=212
 LRDockWidth=7406
@@ -241,11 +318,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=3828
+Width=5000
 Height=1413
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=3828
+ClientWidth=5000
 ClientHeight=1413
 TBDockHeight=1538
 LRDockWidth=3484
@@ -260,11 +337,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=3828
+Width=5000
 Height=1413
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=3828
+ClientWidth=5000
 ClientHeight=1413
 TBDockHeight=2058
 LRDockWidth=3484
@@ -419,7 +496,7 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-724
+Left=-4344
 Top=-102
 Width=1844
 Height=3144
@@ -440,11 +517,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=3828
+Width=5000
 Height=1413
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=3828
+ClientWidth=5000
 ClientHeight=1413
 TBDockHeight=1548
 LRDockWidth=8740
@@ -484,11 +561,11 @@ Docked=1
 State=0
 Left=0
 Top=23
-Width=10000
+Width=4979
 Height=1654
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=10000
+ClientWidth=4979
 ClientHeight=1654
 TBDockHeight=1654
 LRDockWidth=4328
@@ -546,23 +623,23 @@ HostDockSite=DockBottomPanel
 DockSiteType=1
 PercentageSizes=1
 Create=1
-Visible=0
+Visible=1
 Docked=1
 State=0
 Left=960
 Top=23
-Width=3828
+Width=5000
 Height=1654
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=3828
+ClientWidth=5000
 ClientHeight=1654
 TBDockHeight=1654
 LRDockWidth=3828
 Dockable=1
 StayOnTop=0
 TabPosition=1
-ActiveTabID=DebugLogView
+ActiveTabID=WatchWindow
 TabDockClients=DebugLogView,BreakpointWindow,ThreadStatusWindow,CallStackWindow,WatchWindow,LocalVarsWindow
 
 [DockSite2]

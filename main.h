@@ -7,6 +7,8 @@
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
+#include <ExtCtrls.hpp>
+#include <Menus.hpp>
 //---------------------------------------------------------------------------
 
 class TSSLThread : public TThread
@@ -27,13 +29,42 @@ public:
 class TfrmMain : public TForm
 {
 __published:	// IDE-managed Components
+	TTimer *timUpdate;
+	TPopupMenu *pmnLang;
+	TMenuItem *constHostsfilepathfoundpathFatalError;
+	TMenuItem *constHosstCannotRead;
+	TMenuItem *constSystemError;
+	TMainMenu *MainMenu;
+	TMenuItem *F1;
+	TMenuItem *V1;
+	TMenuItem *mnRefresh;
+	TMenuItem *mnCheckupdate;
+	TMenuItem *mnDisplayLog;
+	TMenuItem *N1;
+	TMenuItem *mnUninstall;
+	TMenuItem *N2;
+	TMenuItem *mnExit;
+	TMenuItem *H1;
+	TMenuItem *mnVisitHomePage;
+	void __fastcall timUpdateTimer(TObject *Sender);
+	void __fastcall mnExitClick(TObject *Sender);
+	void __fastcall mnUninstallClick(TObject *Sender);
+	void __fastcall mnCheckupdateClick(TObject *Sender);
+	void __fastcall mnRefreshClick(TObject *Sender);
+	void __fastcall mnDisplayLogClick(TObject *Sender);
+	void __fastcall mnVisitHomePageClick(TObject *Sender);
 private:	// User declarations
 
 		  TStringList *strHosts;
-		  String sDBVersion;
 		  String sHostsPath;
+		  String sLocalBlackListVersion;
+		  String sRemoteBlackListVersion;
+		  String sHostsBlackListVersion;
+
+		  String sCriticalError;
 
 		  TSSLThread *FThread;
+		  bool bNeedUpdateHosts;
 
 		  String __fastcall TfrmMain::sExpandEnvStrings(String sSource);
 		  String __fastcall TfrmMain::sGetHostsPath();
@@ -52,12 +83,22 @@ private:	// User declarations
 		  bool __fastcall TfrmMain::ReadRawStringsFromIniFile(String FileName, String Section, TStringList *strOut);
 
 		  String __fastcall TfrmMain::ReadBlackListFile(String sFile, TStringList *strOut);
-		  bool __fastcall TfrmMain::IsRemoteVersLarger(String RemoteVers, String LocalVers);
+		  bool __fastcall TfrmMain::IsLocalVersUptodate(String RemoteVers, String LocalVers);
 		  String __fastcall TfrmMain::sGetBlackListVersion(String sFile);
 		  String __fastcall TfrmMain::sGetBlackListFilePath();
-		  void __fastcall TfrmMain::CheckUpdate();
+
+		  void __fastcall TfrmMain::CheckUpdateBlackList();
 		  void __fastcall TfrmMain::ThreadDone(TObject *Sender);
 		  String __fastcall TfrmMain::sGetDBVersionFromStrings(TStringList *str);
+		  bool __fastcall TfrmMain::UpdateLocalBlackListFromRemote(String sRemoteText);
+
+		  void __fastcall TfrmMain::DisplayStatus(int iStatus);
+
+		  bool __fastcall TfrmMain::UninstallFromHosts();
+		  bool __fastcall TfrmMain::WriteToHostsFile();
+		  bool __fastcall TfrmMain::ReadMainStatus();
+		  bool __fastcall TfrmMain::IsInstalledIntoHosts();
+
 
 
 public:		// User declarations
@@ -81,5 +122,13 @@ void __fastcall WriteLogMessage(AnsiString sText);
 #define URL_BLACKLIST String("https://raw.githubusercontent.com/greatis/Anti-WebMiner/master/blacklist.txt")
 
 
+#define DISP_ALL_DONE      0
+#define DISP_INSTALL_TO_HOSTS  1
+#define DISP_UPDATE_HOSTS      2
+#define DISP_GET_BLACKLIST      3
+
+#define DISP_FATAL_ERROR      -1
+
+#define MAIN_VERS String("1.0.0.1")
 
 #endif

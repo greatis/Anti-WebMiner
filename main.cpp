@@ -23,7 +23,7 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 	LogFileName=ExtractFilePath(ParamStr(0))+"debug.log";
 	bDebugMode=true;
 	strHosts=new TStringList;
-	sDBVersion="";
+	sLocalBlackListVersion="";
 
  if(bDebugMode)
  {
@@ -34,27 +34,58 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
   catch(...)
   {
   }
+ }
+ else
+ {
+   LogFileName=""; // disable writing to log file
+ }
+
+	   WriteLogMessage(MAIN_LABEL+" "+MAIN_VERS+" "+Now().DateTimeString());
+
+	   if(ReadMainStatus())
+	   {
+		timUpdate->Enabled=true;
+	   }
+
+}
+__fastcall TfrmMain::~TfrmMain()
+{
+  delete strHosts;
+}
+
+bool __fastcall TfrmMain::ReadMainStatus()
+{
+  bool bResult=true;
+
+  try
+  {
+	 String sLocalBlackList=sGetBlackListFilePath();
+	 if(!FileExists(sLocalBlackList))
+	 {
+		WriteLogMessage("Local Black List not found: "+sLocalBlackList);
+		 DisplayStatus(DISP_GET_BLACKLIST);
+	 }
+	 else
+	 {
+		sLocalBlackListVersion=sGetBlackListVersion(sGetBlackListFilePath());
+		WriteLogMessage("Black List Version= "+sLocalBlackListVersion);
+	 }
 
 	sHostsPath=sGetHostsPath();
 
-  // Test: Get Hosts
-
-/*  String sLatestBase;
-	GetInternetRequest(URL_BLACKLIST,sLatestBase);
-  */
-  CheckUpdate();
 
 	   WriteLogMessage("Hosts Path= "+sHostsPath);
 	 if(!sHostsPath.IsEmpty())
 	 {
 	   sHostsPath=sHostsPath+"hosts";
-	   bool bNeedUpdateHosts=false;
 	   int iStart=-1;
 	   int iEnd=-1;
 
 	   if(!FileExists(sHostsPath))
 	   {
 		   bNeedUpdateHosts=true;
+		   WriteLogMessage("Hosts file does not exists: "+sHostsPath);
+		   DisplayStatus(DISP_INSTALL_TO_HOSTS);
 	   }
 	   else
 	   {
@@ -72,9 +103,9 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 						WriteLogMessage(MAIN_LABEL+" End Row= "+String(iEnd));
 
 						int iInstallDate=0;
-					   String sCurVersion=	sGetOurVersionFromHosts( iStart, iInstallDate);
+					   sHostsBlackListVersion=	sGetOurVersionFromHosts( iStart, iInstallDate);
 
-						WriteLogMessage("Found Version in Hosts= "+sCurVersion);
+						WriteLogMessage("Found Version in Hosts= "+sHostsBlackListVersion);
 
 						WriteLogMessage("Found Install Date in Hosts= "+String(iInstallDate));
 						if(iInstallDate>0)
@@ -84,12 +115,17 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 						}
 
 
-						sDBVersion=sGetBlackListVersion(sGetBlackListFilePath());
-						WriteLogMessage("Black List Version= "+sDBVersion);
 
-						if(!IsRemoteVersLarger( sDBVersion,  sDBVersion))
+						if(IsLocalVersUptodate( sLocalBlackListVersion,  sHostsBlackListVersion))
 						{
 						  bNeedUpdateHosts=false;
+						   WriteLogMessage("Hosts is up-to-date: "+ sLocalBlackListVersion+" Remote version: "+sHostsBlackListVersion);
+
+						}
+						else
+						{
+						   WriteLogMessage("Hosts must be updated: "+ sLocalBlackListVersion+" Remote version: "+sHostsBlackListVersion);
+
 						}
 
 
@@ -99,13 +135,113 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 			   }
 			   else
 			   {
-				   WriteLogMessage("ReadHostsFile=error :(");
+				   sCriticalError =constHosstCannotRead->Caption+" "+constSystemError->Caption+" "+SysErrorMessage(GetLastError());
+				   WriteLogMessage(sCriticalError);
+				   DisplayStatus(DISP_FATAL_ERROR);
+				   bResult= false;
 			   }
 	  } //else
 
 	  if(bNeedUpdateHosts)
 	  {
-		RemoveOurStringsFromHostsStrings(iStart, iEnd);
+		DisplayStatus(DISP_UPDATE_HOSTS);
+	  }
+	  else
+	  {
+			DisplayStatus(DISP_ALL_DONE);
+	  }
+
+
+	} // endif!sHostsPath.IsEmpty())
+	else
+	{
+	   sCriticalError=constHostsfilepathfoundpathFatalError->Caption;
+	   WriteLogMessage(sCriticalError);
+
+	   DisplayStatus(DISP_FATAL_ERROR);
+				   bResult= false;
+	}
+
+ }
+ catch(...)
+ {
+ }
+  return bResult;
+}
+
+bool __fastcall TfrmMain::IsInstalledIntoHosts()
+{
+	   int iStart=-1;
+	   bool bResult=false;
+	   try
+	   {
+		   if(ReadHostsFile(sHostsPath,strHosts))
+			   {
+				   WriteLogMessage("ReadHostsFile=success!");
+					WriteLogMessage("Num rows in hosts= "+String(strHosts->Count));
+
+					 iStart=sGetOurStartPosInHosts();
+					 WriteLogMessage(MAIN_LABEL+" Start Row= "+String(iStart));
+					 if(iStart>=0)
+					 {
+					  bResult=true;
+					 }
+				  }
+		 }
+		 catch(...)
+		 {
+		 }
+
+  return bResult;
+
+}
+bool __fastcall TfrmMain::UninstallFromHosts()
+{
+	   int iStart=-1;
+	   int iEnd=-1;
+	   bool bResult=false;
+	   try
+	   {
+		 WriteLogMessage("Starting uninstall from hosts...");
+
+			   if(ReadHostsFile(sHostsPath,strHosts))
+			   {
+				   WriteLogMessage("ReadHostsFile=success!");
+					WriteLogMessage("Num rows in hosts= "+String(strHosts->Count));
+
+					 iStart=sGetOurStartPosInHosts();
+					WriteLogMessage(MAIN_LABEL+" Start Row= "+String(iStart));
+					if(iStart>=0)
+					{
+					   iEnd=sGetOurFinalPosInHosts(iStart);
+					  bResult= RemoveOurStringsFromHostsStrings(iStart, iEnd);
+					}
+					else
+					{
+					  WriteLogMessage(MAIN_LABEL + " is not installed into Hosts files");
+					}
+			  }
+			  else
+			  {
+				 WriteLogMessage("ReadHostsFile=failure!");
+			  }
+
+	   }
+	   catch(...)
+	   {
+	   }
+
+	   return bResult;
+
+}
+
+
+bool __fastcall TfrmMain::WriteToHostsFile()
+{
+
+  bool bResult=false;
+	UninstallFromHosts();
+
 		TStringList *strServList=NULL;
 		 try
 		 {
@@ -119,7 +255,7 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 			ReadBlackListFile(ExtractFilePath(ParamStr(0))+BLACKLIST_DB, strServList);
 
 			AddServerListTopHostsStrings(  strServList);
-			SaveHostsFile();
+			bResult=SaveHostsFile();
 		 }
 		 catch(...)
 		 {
@@ -127,17 +263,9 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 
 		 delete  strServList;
 
-	  }
-
-	} // endif!sHostsPath.IsEmpty())
-  }
+return bResult;
 
 }
-__fastcall TfrmMain::~TfrmMain()
-{
-  delete strHosts;
-}
-
 //---------------------------------------------------------------------------
 String __fastcall TfrmMain::sGetHostsPath()
 {
@@ -225,20 +353,9 @@ String __fastcall TfrmMain::AddLastSlash(String sSource)
 
 bool __fastcall TfrmMain::ReadHostsFile(String sFilePath, TStringList *strOut)
 {
-  if(!FileExists(sFilePath))
-  {
-		if(bDebugMode)
-		{
-		  WriteLogMessage("ReadHostsFile: File does not exist: "+sFilePath);
-		}
-	return false;
-  }
    if(strOut==NULL)
    {
-		if(bDebugMode)
-		{
 		  WriteLogMessage("ReadHostsFile: strOut=NULL");
-		}
 	return false;
    }
 
@@ -252,6 +369,7 @@ bool __fastcall TfrmMain::ReadHostsFile(String sFilePath, TStringList *strOut)
    }
    catch(...)
    {
+		  WriteLogMessage("ReadHostsFile: Exception during LoadFromFile: "+sFilePath);
    }
 
 
@@ -355,10 +473,7 @@ bool __fastcall TfrmMain::AddServerListTopHostsStrings(TStringList *strIn)
 {
   if(strIn==NULL)
   {
- 		if(bDebugMode)
-		{
 		  WriteLogMessage("AddServerListTopHostsStrings: strIn=NULL");
-		}
 
   return false;
   }
@@ -366,7 +481,7 @@ bool __fastcall TfrmMain::AddServerListTopHostsStrings(TStringList *strIn)
   bool bResult=false;
   try
   {
-	   strHosts->Add(String("# ")+String(START_LABEL)+" "+sDBVersion+" "+String((int)Now()));
+	   strHosts->Add(String("# ")+String(START_LABEL)+" "+sLocalBlackListVersion+" "+String((int)Now()));
 	   for(int i=0;i<strIn->Count;i++)
 	   {
 		 strHosts->Add("0.0.0.0 "+strIn->Strings[i]);
@@ -485,10 +600,7 @@ String __fastcall TfrmMain::ReadBlackListFile(String sFile, TStringList *strOut)
 	tif=new TIniFile(sFile);
 	if(!tif->SectionExists(MAIN_LABEL))
 	{
-		if(bDebugMode)
-		{
 		  WriteLogMessage("ReadBlackListFile: File is not a black list: "+sFile);
-		}
 	}
 	else
 	{
@@ -516,10 +628,7 @@ String __fastcall TfrmMain::ReadBlackListFile(String sFile, TStringList *strOut)
   {
 	  if(sResult.IsEmpty())
 	  {
-		if(bDebugMode)
-		{
 		  WriteLogMessage("ReadBlackListFile: Version is not found in black list: "+sFile);
-		}
 	  }
 	  else
 	  {
@@ -599,7 +708,7 @@ bool __fastcall TfrmMain::ReadRawStringsFromIniFile(String FileName, String Sect
 
 
 
-bool __fastcall TfrmMain::IsRemoteVersLarger(String RemoteVers, String LocalVers)
+bool __fastcall TfrmMain::IsLocalVersUptodate(String RemoteVers, String LocalVers)
 {
    if(RemoteVers==LocalVers)
 	return true;
@@ -714,15 +823,13 @@ String __fastcall TfrmMain::sGetBlackListVersion(String sFile)
 	tif=new TIniFile(sFile);
 	if(!tif->SectionExists(MAIN_LABEL))
 	{
-		if(bDebugMode)
-		{
 		  WriteLogMessage("ReadBlackListFile: File is not a black list: "+sFile);
-		}
 	}
 	else
 	{
 	  sResult=tif->ReadString( MAIN_LABEL,"Version","");
 
+		  WriteLogMessage("Version: "+sResult+" File: "+sFile);
 
 
 	}
@@ -758,10 +865,7 @@ int __fastcall GetInternetRequest(String sURL, String &sOutResult)
 	  sSite=sURL;
 	  if(sSite.IsEmpty())
 	  {
-		if(bDebugMode)
-		{
 		  WriteLogMessage("No sURL in GetInternetRequest");
-		}
 			return -1;
 
 	  }
@@ -770,10 +874,7 @@ int __fastcall GetInternetRequest(String sURL, String &sOutResult)
 	  bool bHTPPS=true;
   try
   {
-	 if(bDebugMode)
-	 {
 	   WriteLogMessage("Starting GetInternetRequest to: "+sURL);
-	 }
 	   AnsiString sLex="http://";
 	   if(sSite.SubString(1,sLex.Length())==sLex)
 	   {
@@ -793,11 +894,8 @@ int __fastcall GetInternetRequest(String sURL, String &sOutResult)
 		  sSite=sSite.SubString(1,n_pos-1);
 		}
 
-	 if(bDebugMode)
-	 {
 		WriteLogMessage("Server Name: "+sSite);
 		WriteLogMessage("Param: "+sParam);
-	 }
 
 	String sAgentName("Mozilla/4.0");
 	String sServerName(sSite.t_str()); //Can be any https server address
@@ -840,10 +938,7 @@ CONNECT:
 		if (!inetSec.ConnectToHttpsServer(strVerb))
 		{
 		  AnsiString sEr=inetSec.m_strLastError.c_str();
-		  if(bDebugMode)
-		  {
 			WriteLogMessage( "ConnectToHttpsServer failed: "+sEr +AnsiString(" Code: ") +AnsiString(inetSec.GetLastErrorCode()));
-		  }
 		   Sleep(200);
 		}
 		else
@@ -906,7 +1001,7 @@ FINISH:
 }
 
 
-void __fastcall TfrmMain::CheckUpdate()
+void __fastcall TfrmMain::CheckUpdateBlackList()
 {
 
  MSG Msg;
@@ -928,29 +1023,20 @@ void __fastcall TfrmMain::CheckUpdate()
 
 void __fastcall TfrmMain::ThreadDone(TObject *Sender)
 {
-TStringList *str=NULL;
  try
  {
   if(FThread!=NULL)
   {
-	str=new TStringList;
-	str->Text= FThread->FResult;
-	 String sVers= sGetDBVersionFromStrings(str);
+	WriteLogMessage("Update thread finished. Returned (bytes): "+String(FThread->FResult.Length()));
 
-	 if(IsRemoteVersLarger(sVers,sDBVersion))
-	 {
-	   try
-	   {
-		str->SaveToFile(sGetBlackListFilePath());
-	   }
-	   catch(...)
-	   {
-	   }
-
-	 }
 	 int iResult=FThread->iResult;
 
-   }
+	  if( UpdateLocalBlackListFromRemote(FThread->FResult))
+	  {
+		bNeedUpdateHosts=true;
+		DisplayStatus(DISP_UPDATE_HOSTS);
+	  }
+  }
  }
  catch(...)
  {
@@ -958,9 +1044,61 @@ TStringList *str=NULL;
 
 	FThread=NULL;
 
- delete str;
+}
+void __fastcall TfrmMain::DisplayStatus(int iStatus)
+{
+  switch(iStatus)
+  {
+   case DISP_ALL_DONE:
+				break;
+   case DISP_INSTALL_TO_HOSTS:
+				break;
+   case DISP_UPDATE_HOSTS:
+				break;
+   case DISP_GET_BLACKLIST:
+				 break;
+
+  }
 }
 
+bool __fastcall TfrmMain::UpdateLocalBlackListFromRemote(String sRemoteText)
+{
+TStringList *str=NULL;
+bool bResult=false;
+ try
+ {
+	str=new TStringList;
+	str->Text= sRemoteText;
+	 sRemoteBlackListVersion= sGetDBVersionFromStrings(str);
+
+	 WriteLogMessage("DB Version found in text: "+sRemoteBlackListVersion);
+
+	 if(!IsLocalVersUptodate(sRemoteBlackListVersion,sLocalBlackListVersion))
+	 {
+	   WriteLogMessage("Remote version is newer than local. We must update local blacklist!");
+	   String sFile=sGetBlackListFilePath();
+	   try
+	   {
+		str->SaveToFile(sFile);
+		bResult=true;
+	   }
+	   catch(...)
+	   {
+		  WriteLogMessage("Exception! Save to file: "+sFile);
+	   }
+	 }
+	 else
+	 {
+	   WriteLogMessage("Local version is up-to-date: "+ sLocalBlackListVersion+" Remote version: "+sRemoteBlackListVersion);
+
+	 }
+ }
+ catch(...)
+ {
+ }
+ delete str;
+return bResult;
+}
 String __fastcall TfrmMain::sGetDBVersionFromStrings(TStringList *str)
 {
  if(str==NULL)
@@ -1032,3 +1170,51 @@ __fastcall TSSLThread::TSSLThread(bool CreateSuspended, String URL)
 	 Terminate();
 
  }
+void __fastcall TfrmMain::timUpdateTimer(TObject *Sender)
+{
+	timUpdate->Enabled=false;
+	 CheckUpdateBlackList();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::mnExitClick(TObject *Sender)
+{
+ Close();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::mnUninstallClick(TObject *Sender)
+{
+  if(IsInstalledIntoHosts())
+  {
+     UninstallFromHosts();
+  }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::mnCheckupdateClick(TObject *Sender)
+{
+  timUpdate->Enabled=true;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::mnRefreshClick(TObject *Sender)
+{
+   ReadMainStatus();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::mnDisplayLogClick(TObject *Sender)
+{
+  ShellExecute(NULL,L"open",LogFileName.t_str(),NULL,NULL,SW_SHOW);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::mnVisitHomePageClick(TObject *Sender)
+{
+
+  ShellExecute(NULL,L"open",L"https://github.com/greatis/Anti-WebMiner",NULL,NULL,SW_SHOW);
+
+}
+//---------------------------------------------------------------------------
+
