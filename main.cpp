@@ -23,9 +23,9 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 	LogFileName=ExtractFilePath(ParamStr(0))+"debug.log";
 	bDebugMode=true;
 	strHosts=new TStringList;
-	sLocalBlackListVersion="";
+	sLocalBlackListVersion="0.0";
 
-
+	Caption=MAIN_LABEL+" "+MAIN_VERS;
  if(bDebugMode)
  {
   try
@@ -136,7 +136,7 @@ bool __fastcall TfrmMain::ReadMainStatus()
 			   }
 			   else
 			   {
-				   sCriticalError =constHosstCannotRead->Caption+" "+constSystemError->Caption+" "+SysErrorMessage(GetLastError());
+				   sCriticalError =constHosstCannotRead->Caption+" "+constSystemError->Caption+": "+SysErrorMessage(GetLastError());
 				   WriteLogMessage(sCriticalError);
 				   DisplayStatus(DISP_FATAL_ERROR);
 				   bResult= false;
@@ -1011,13 +1011,17 @@ FINISH:
 }
 
 
-void __fastcall TfrmMain::CheckUpdateBlackList()
+void __fastcall TfrmMain::CheckUpdates()
 {
 
  MSG Msg;
 
-
-	FThread =  new TSSLThread(true, URL_BLACKLIST);
+  String sURL=URL_BLACKLIST;
+	if(bCheckProgramUpdate)
+	{
+	  sURL=URL_PROGRAM_VERSION;
+	}
+	FThread =  new TSSLThread(true, sURL);
 	FThread->OnTerminate = ThreadDone;
 	FThread->Resume();
    if(FThread)
@@ -1040,16 +1044,41 @@ void __fastcall TfrmMain::ThreadDone(TObject *Sender)
 	WriteLogMessage("Update thread finished. Returned (bytes): "+String(FThread->FResult.Length()));
 
 	 int iResult=FThread->iResult;
+	if(bCheckProgramUpdate)
+	{
+	   sRemoteProgramVersion=sGetVersionFromMemoryIni( FThread->FResult);
 
+		 if(!IsLocalVersUptodate(sRemoteProgramVersion, MAIN_VERS))
+		 {
+			DisplayStatus(DISP_FOUND_PROGRAM_UPDATES);
+
+		 }
+		 else
+		 {
+		   ReadMainStatus();
+		 }
+
+	}
+	else
+	{
 	  if( UpdateLocalBlackListFromRemote(FThread->FResult))
 	  {
 		bNeedUpdateHosts=true;
-		DisplayStatus(DISP_FOUND_UPDATES);
+		if(sHostsBlackListVersion.IsEmpty())
+		{
+		   DisplayStatus(DISP_INSTALL_TO_HOSTS);
+		}
+		else
+		{
+		  DisplayStatus(DISP_FOUND_UPDATES);
+		}
 	  }
 	  else
 	  {
-		ReadMainStatus();
+	   //	ReadMainStatus();
+		timProgramCheckUpdate->Enabled=true;
 	  }
+	 }
   }
  }
  catch(...)
@@ -1068,6 +1097,21 @@ void __fastcall TfrmMain::DisplayStatus(int iStatus)
 
 	  switch(iStatus)
 	  {
+	   case DISP_FATAL_ERROR:  lblStatus->Caption= sCriticalError;
+							   imgStatus->Picture->Assign(imgError->Picture);
+								btInstall->Enabled=false;
+
+								  if(sHostsBlackListVersion.IsEmpty())
+								 {
+									btUninstall->Enabled=false;
+								  }
+								  else
+								  {
+									btUninstall->Enabled=true;
+								  }
+
+
+								break;
 	   case DISP_ALL_DONE:
 					lblStatus->Caption=constYourcomputerisprotected->Caption+"\n"+constDatabaseversion->Caption+": "+sHostsBlackListVersion;
 					if(iInstallDate>0)
@@ -1127,9 +1171,25 @@ void __fastcall TfrmMain::DisplayStatus(int iStatus)
 	   case DISP_CHECK_UPDATE:
 					  lblStatus->Caption=constCheckingforupdates->Caption;
 					  DisplayPreloader(true);
-
-
 					 break;
+	   case DISP_CHECK_PROGRAM_UPDATE:
+					  lblStatus->Caption=constCheckingforprogramsupdates->Caption;
+					  DisplayPreloader(true);
+					 break;
+	   case DISP_FOUND_PROGRAM_UPDATES:
+					   lblStatus->Caption=constFoundnewversion->Caption+": "+sRemoteProgramVersion+"\n"+constClickDownload->Caption;
+					   imgStatus->Picture->Assign( imgDownload->Picture);
+					   try
+					   {
+					    btDownload->Visible=true;
+						 btDownload->SetFocus();
+					   }
+					   catch(...)
+					   {
+					   }
+
+					  break;
+
 
 	  }
    }
@@ -1157,6 +1217,8 @@ bool bResult=false;
 	   try
 	   {
 		str->SaveToFile(sFile);
+		WriteLogMessage("New Blacklist was saved: "+sFile);
+		sLocalBlackListVersion= sRemoteBlackListVersion;
 		bResult=true;
 	   }
 	   catch(...)
@@ -1250,8 +1312,10 @@ __fastcall TSSLThread::TSSLThread(bool CreateSuspended, String URL)
 void __fastcall TfrmMain::timUpdateTimer(TObject *Sender)
 {
 	timUpdate->Enabled=false;
+
+	 bCheckProgramUpdate=false;
 	 DisplayStatus(DISP_CHECK_UPDATE);
-	 CheckUpdateBlackList();
+	 CheckUpdates();
 }
 //---------------------------------------------------------------------------
 
@@ -1362,12 +1426,66 @@ void __fastcall TfrmMain::imgPreloaderClick(TObject *Sender)
 	 if(FThread!=NULL)
 	 {
 	   FThread->Terminate();
-         ReadMainStatus();
 	 }
+         ReadMainStatus();
    }
    catch(...)
    {
    }
+}
+//---------------------------------------------------------------------------
+
+String __fastcall TfrmMain::sGetVersionFromMemoryIni(String sRemoteText)
+{
+TStringList *str=NULL;
+ String sResult;
+ try
+ {
+	str=new TStringList;
+	str->Text= sRemoteText;
+	 sResult= sGetDBVersionFromStrings(str);
+ }
+ catch(...)
+ {
+
+ }
+
+ delete str;
+
+ return sResult;
+}
+
+void __fastcall TfrmMain::timProgramCheckUpdateTimer(TObject *Sender)
+{
+	timProgramCheckUpdate->Enabled=false;
+
+	 bCheckProgramUpdate=true;
+	 DisplayStatus(DISP_CHECK_UPDATE);
+	 CheckUpdates();
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::btDownloadClick(TObject *Sender)
+{
+	//
+  ShellExecute(NULL,L"open",L"https://github.com/greatis/Anti-WebMiner",NULL,NULL,SW_SHOW);
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TfrmMain::btLicenseClick(TObject *Sender)
+{
+ String sLicense=ExtractFilePath(ParamStr(0))+"LICENSE.TXT";
+  ShellExecute(NULL,L"open",sLicense.t_str(),NULL,NULL,SW_SHOW);
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::lblCopyrightClick(TObject *Sender)
+{
+  ShellExecute(NULL,L"open",L"http://www.greatis.com",NULL,NULL,SW_SHOW);
+
 }
 //---------------------------------------------------------------------------
 

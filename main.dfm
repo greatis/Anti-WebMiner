@@ -4,7 +4,7 @@ object frmMain: TfrmMain
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Anti-WebMiner'
-  ClientHeight = 431
+  ClientHeight = 511
   ClientWidth = 719
   Color = clBtnFace
   DoubleBuffered = True
@@ -18,13 +18,35 @@ object frmMain: TfrmMain
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 15
+  object lblCopyright: TLabel
+    Left = 0
+    Top = 388
+    Width = 719
+    Height = 30
+    Cursor = crHandPoint
+    Align = alBottom
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = 
+      'Free of charge. Apache License 2.0. Copyright 2017 Greatis Softw' +
+      'are http://www.greatis.com   '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clGrayText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+    Layout = tlCenter
+    OnClick = lblCopyrightClick
+    ExplicitTop = 368
+  end
   object pnlTop: TPanel
     Left = 0
     Top = 0
     Width = 719
     Height = 105
     Align = alTop
-    TabOrder = 4
+    TabOrder = 0
     object imgIcon: TImage
       Left = 16
       Top = 16
@@ -108,11 +130,11 @@ object frmMain: TfrmMain
     object lblSubHeader: TLabel
       Left = 80
       Top = 66
-      Width = 451
+      Width = 446
       Height = 15
       Caption = 
-        'Anti-WebMiner blocks the hosts with JS scripts, used for coin mi' +
-        'ning in web browser. '
+        'Protects your PC against web coin miners (JS mining scripts exec' +
+        'uted in the browser)'
     end
     object btMoreInfo: TButton
       Left = 573
@@ -125,7 +147,7 @@ object frmMain: TfrmMain
     end
   end
   object btInstall: TButton
-    Left = 88
+    Left = 83
     Top = 168
     Width = 225
     Height = 97
@@ -136,20 +158,20 @@ object frmMain: TfrmMain
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
-    TabOrder = 0
+    TabOrder = 1
     OnClick = btInstallClick
   end
   object pnlStatus: TPanel
     Left = 0
-    Top = 338
+    Top = 418
     Width = 719
     Height = 93
     Align = alBottom
     BevelOuter = bvNone
     Color = clScrollBar
     ParentBackground = False
-    TabOrder = 3
-    ExplicitTop = 400
+    TabOrder = 4
+    ExplicitTop = 398
     object lblStatus: TLabel
       Left = 99
       Top = 16
@@ -199,6 +221,7 @@ object frmMain: TfrmMain
       Top = 43
       Width = 50
       Height = 50
+      Cursor = crHandPoint
       AutoSize = True
       Picture.Data = {
         0954474946496D61676547494638396132003200F7F400354A5F9AA4AF3E5266
@@ -1821,10 +1844,12 @@ object frmMain: TfrmMain
     end
   end
   object pnlImages: TPanel
-    Left = 472
-    Top = 282
+    Left = 613
+    Top = 225
     Width = 385
     Height = 258
+    Color = clFuchsia
+    ParentBackground = False
     TabOrder = 5
     Visible = False
     object imgInfo: TImage
@@ -1895,27 +1920,101 @@ object frmMain: TfrmMain
         071871762FE50A621B6617001566C3EC92B88DAEFFD5C0B6561EE02F5CCDAF40
         33AA8E2D0000000049454E44AE426082}
     end
+    object imgDownload: TImage
+      Left = 21
+      Top = 168
+      Width = 48
+      Height = 48
+      AutoSize = True
+      Picture.Data = {
+        0954506E67496D61676589504E470D0A1A0A0000000D49484452000000300000
+        003008060000005702F987000001654944415478DAED98414EC33010456780AE
+        A944BBE7069413109F006E40901A891D1CA147805DA55422DCA03D81C3092837
+        609F22857581C1668522D1403C716A346FD345E3CC7FAAFD25172170B0EB0022
+        D07580AD131826396DFABE4823D699222002DB26E01B11A812FC16120111080C
+        11A812FC161201111001111081FA90639D01E239AB39D17D3153B11701CB20D1
+        39029EB064077A58A52A6AB2B6B1403FD6FD5E0F72F38A23C7F84FEB354465A6
+        4AAF029661A24766C3DB5F62BF5174A05713202A52B56C9AC1F9405909F39AC7
+        66ABE9D8253C8B80E520D1F10EE0DD5FD67C005DBCA42A739DCD566946E2C648
+        5CFD32FCAD097FCD3197B59307633D47C4D34DCF10D1623553675C335905EA9B
+        C9AD715A17F892B8D4877BEFB0AC36936D9CB75D189553F5CC39AF952B65B55E
+        39EAD2AB80E57B3371358E57018B39D413FB690EEDA4AD19F2AF44D7FC5F81BA
+        8B896F7EBA08898008B425100A22D035C10B7C029DFFB331F52AFAA400000000
+        49454E44AE426082}
+    end
+    object imgError: TImage
+      Left = 70
+      Top = 16
+      Width = 48
+      Height = 48
+      AutoSize = True
+      Picture.Data = {
+        0954506E67496D61676589504E470D0A1A0A0000000D49484452000000300000
+        003008060000005702F987000002824944415478DAD5D84F6B13411806F077B2
+        891AB2C5DCC49305F16C1452AF6B235E3CB4DF407A2C5EFC031EFD06524F8AE8
+        A114054FD2422F82D1F522D880D6B314F20D44DC5249DC8EB31B1A1CBAD9ECBC
+        F38C6EDE43D89DC0EEF3DB6CDED95941335EE27F072825E02068CDFFF64EACA9
+        832F8F46644831DDF1C3DE6EE90151D06EC90ABD1742348F7D29E58AFFAEB75E
+        5A406E78470818A05078070808C0283C18610D60850722AC0056E14108360012
+        1E806001A0E12D11C60027E12D104600A7E19988C20093F0DEC5CB74EAE1136D
+        ECD7BD558ABF7E86230A014CAFBC35C0003115C0B96D208082885C00F79E8701
+        0A2026026CFEB050C0144426C0BADB347C6A6C75B5A1FDA58EFA8878801CC431
+        00AA5536DE7ED201D7AED81C6E22420320FBBC134006620C48978195DA17D424
+        E50C90542C2F1D2D4FC7809F9D854DB5B3843A8753805A63FBDDDE551DB0D8FE
+        8E7C44700B20F2BB3B4203448B0B7DB5776E76019DF6BADABD0903246D54B5D3
+        51FA68D446412589B6E6BA3BCB1A4006AD66E4D5FA82C469C449EA6A22ABA809
+        2DA94335811DA8890C135EFEA8C6C3563DDCED6B80A4D236EA518840B80024E1
+        454CC1DF2FC8B2273210025959E1330165444C0A3F118040883367A97AFD46BA
+        1D7FFC40877BDFE0E173015688E461EEE5A6EA7573E321CED3E8B4F053015C44
+        72E54FDE7FA08D0D379ED360E319347C21000751397F81EA4F5F686383C76B34
+        7CFD0A1ABE308083487F855B77D3EDE19BED14800E6F04E0204CCB34BC31C025
+        82139E057081E086670390089BF0560004C236BC35C00681080F017010A8F030
+        800902191E0A288240878703F2102EC23B01A461D5F274DFAB3D222902296453
+        9D26ACC683DB47CBC0D203FE65CD3CE00F6F37E440EC5D90CC0000000049454E
+        44AE426082}
+    end
   end
   object btUninstall: TButton
-    Left = 343
-    Top = 224
-    Width = 161
+    Left = 469
+    Top = 199
+    Width = 225
     Height = 41
     Caption = 'Uninstall'
-    TabOrder = 2
+    TabOrder = 3
     OnClick = btUninstallClick
   end
   object btUpdate: TButton
-    Left = 343
-    Top = 168
+    Left = 533
+    Top = 119
     Width = 161
     Height = 41
     Caption = 'Check for Updates...'
-    TabOrder = 1
+    TabOrder = 2
+    Visible = False
     OnClick = mnCheckupdateClick
+  end
+  object btDownload: TButton
+    Left = 83
+    Top = 296
+    Width = 225
+    Height = 41
+    Caption = 'Download'
+    TabOrder = 6
+    Visible = False
+    OnClick = btDownloadClick
+  end
+  object btLicense: TButton
+    Left = 527
+    Top = 328
+    Width = 167
+    Height = 25
+    Caption = 'License Information...'
+    TabOrder = 7
+    OnClick = btLicenseClick
   end
   object timUpdate: TTimer
     Enabled = False
+    Interval = 100
     OnTimer = timUpdateTimer
     Left = 656
   end
@@ -1962,11 +2061,20 @@ object frmMain: TfrmMain
       Caption = 'Checking for updates...'
     end
     object constNewdatabaseversion: TMenuItem
-      Caption = 'Found new database version:'
+      Caption = 'Found new database version'
+    end
+    object constCheckingforprogramsupdates: TMenuItem
+      Caption = 'Checking for program'#39's updates...'
+    end
+    object constFoundnewversion: TMenuItem
+      Caption = 'Found new version'
+    end
+    object constClickDownload: TMenuItem
+      Caption = 'Click Download'
     end
   end
   object MainMenu: TMainMenu
-    Left = 608
+    Left = 496
     Top = 8
     object F1: TMenuItem
       Caption = 'File'
@@ -2007,5 +2115,12 @@ object frmMain: TfrmMain
         OnClick = mnVisitHomePageClick
       end
     end
+  end
+  object timProgramCheckUpdate: TTimer
+    Enabled = False
+    Interval = 50
+    OnTimer = timProgramCheckUpdateTimer
+    Left = 656
+    Top = 64
   end
 end

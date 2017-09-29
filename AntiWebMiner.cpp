@@ -12,6 +12,7 @@ WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	{
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
+		Application->Title = "Anti-WebMiner";
 		Application->CreateForm(__classid(TfrmMain), &frmMain);
 		Application->Run();
 	}

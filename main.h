@@ -74,6 +74,15 @@ __published:	// IDE-managed Components
 	TMenuItem *constCheckingforupdates;
 	TButton *btMoreInfo;
 	TMenuItem *constNewdatabaseversion;
+	TTimer *timProgramCheckUpdate;
+	TMenuItem *constCheckingforprogramsupdates;
+	TMenuItem *constFoundnewversion;
+	TButton *btDownload;
+	TMenuItem *constClickDownload;
+	TImage *imgDownload;
+	TImage *imgError;
+	TLabel *lblCopyright;
+	TButton *btLicense;
 	void __fastcall timUpdateTimer(TObject *Sender);
 	void __fastcall mnExitClick(TObject *Sender);
 	void __fastcall mnUninstallClick(TObject *Sender);
@@ -85,6 +94,10 @@ __published:	// IDE-managed Components
 	void __fastcall btUninstallClick(TObject *Sender);
 	void __fastcall btInstallClick(TObject *Sender);
 	void __fastcall imgPreloaderClick(TObject *Sender);
+	void __fastcall timProgramCheckUpdateTimer(TObject *Sender);
+	void __fastcall btDownloadClick(TObject *Sender);
+	void __fastcall btLicenseClick(TObject *Sender);
+	void __fastcall lblCopyrightClick(TObject *Sender);
 private:	// User declarations
 
 		  TStringList *strHosts;
@@ -93,12 +106,15 @@ private:	// User declarations
 		  String sRemoteBlackListVersion;
 		  String sHostsBlackListVersion;
 
+		  String sRemoteProgramVersion;
 		  int iInstallDate; // date of install into Hosts
 
 		  String sCriticalError;
 
 		  TSSLThread *FThread;
 		  bool bNeedUpdateHosts;
+
+		  bool bCheckProgramUpdate;
 
 		  String __fastcall TfrmMain::sExpandEnvStrings(String sSource);
 		  String __fastcall TfrmMain::sGetHostsPath();
@@ -131,11 +147,12 @@ private:	// User declarations
 		  String __fastcall TfrmMain::sGetBlackListVersion(String sFile);
 
 		  bool __fastcall TfrmMain::IsLocalVersUptodate(String RemoteVers, String LocalVers);
-		  void __fastcall TfrmMain::CheckUpdateBlackList();
+		  void __fastcall TfrmMain::CheckUpdates();
 		  void __fastcall TfrmMain::ThreadDone(TObject *Sender);
 		  String __fastcall TfrmMain::sGetDBVersionFromStrings(TStringList *str);
 		  bool __fastcall TfrmMain::UpdateLocalBlackListFromRemote(String sRemoteText);
 
+		  String __fastcall TfrmMain::sGetVersionFromMemoryIni(String sRemoteText);
 
 
 		  // UI functions
@@ -168,13 +185,15 @@ void __fastcall WriteLogMessage(AnsiString sText);
 #define BLACKLIST_DB String("blacklist.txt")
 
 #define URL_BLACKLIST String("https://raw.githubusercontent.com/greatis/Anti-WebMiner/master/blacklist.txt")
-
+#define URL_PROGRAM_VERSION String("https://raw.githubusercontent.com/greatis/Anti-WebMiner/master/AntiWebMiner.ini")
 
 #define DISP_ALL_DONE      0
 #define DISP_INSTALL_TO_HOSTS  1
 #define DISP_FOUND_UPDATES      2
 #define DISP_NO_BLACKLIST      3
 #define DISP_CHECK_UPDATE      4
+#define DISP_CHECK_PROGRAM_UPDATE      6
+#define DISP_FOUND_PROGRAM_UPDATES         76
 
 #define DISP_FATAL_ERROR      -1
 
