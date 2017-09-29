@@ -25,6 +25,7 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 	strHosts=new TStringList;
 	sLocalBlackListVersion="";
 
+
  if(bDebugMode)
  {
   try
@@ -63,7 +64,7 @@ bool __fastcall TfrmMain::ReadMainStatus()
 	 if(!FileExists(sLocalBlackList))
 	 {
 		WriteLogMessage("Local Black List not found: "+sLocalBlackList);
-		 DisplayStatus(DISP_GET_BLACKLIST);
+		 DisplayStatus(DISP_NO_BLACKLIST);
 	 }
 	 else
 	 {
@@ -102,7 +103,7 @@ bool __fastcall TfrmMain::ReadMainStatus()
 					   iEnd=sGetOurFinalPosInHosts(iStart);
 						WriteLogMessage(MAIN_LABEL+" End Row= "+String(iEnd));
 
-						int iInstallDate=0;
+					   iInstallDate=0;
 					   sHostsBlackListVersion=	sGetOurVersionFromHosts( iStart, iInstallDate);
 
 						WriteLogMessage("Found Version in Hosts= "+sHostsBlackListVersion);
@@ -144,7 +145,14 @@ bool __fastcall TfrmMain::ReadMainStatus()
 
 	  if(bNeedUpdateHosts)
 	  {
-		DisplayStatus(DISP_UPDATE_HOSTS);
+	   if(iStart>=0)
+	   {
+		DisplayStatus(DISP_FOUND_UPDATES);
+	   }
+	   else
+	   {
+		DisplayStatus(DISP_INSTALL_TO_HOSTS);
+	   }
 	  }
 	  else
 	  {
@@ -215,6 +223,8 @@ bool __fastcall TfrmMain::UninstallFromHosts()
 					{
 					   iEnd=sGetOurFinalPosInHosts(iStart);
 					  bResult= RemoveOurStringsFromHostsStrings(iStart, iEnd);
+
+					  bResult=SaveHostsFile();
 					}
 					else
 					{
@@ -236,7 +246,7 @@ bool __fastcall TfrmMain::UninstallFromHosts()
 }
 
 
-bool __fastcall TfrmMain::WriteToHostsFile()
+bool __fastcall TfrmMain::InstallIntoHosts()
 {
 
   bool bResult=false;
@@ -254,7 +264,7 @@ bool __fastcall TfrmMain::WriteToHostsFile()
 
 			ReadBlackListFile(ExtractFilePath(ParamStr(0))+BLACKLIST_DB, strServList);
 
-			AddServerListTopHostsStrings(  strServList);
+			AddTostrHosts(strServList);
 			bResult=SaveHostsFile();
 		 }
 		 catch(...)
@@ -469,11 +479,11 @@ String __fastcall TfrmMain::sGetOurVersionFromHosts(int iStartRow, int &iOutInst
 }
 
 
-bool __fastcall TfrmMain::AddServerListTopHostsStrings(TStringList *strIn)
+bool __fastcall TfrmMain::AddTostrHosts(TStringList *strIn)
 {
   if(strIn==NULL)
   {
-		  WriteLogMessage("AddServerListTopHostsStrings: strIn=NULL");
+		  WriteLogMessage("AddTostrHosts: strIn=NULL");
 
   return false;
   }
@@ -764,7 +774,7 @@ bool __fastcall TfrmMain::IsLocalVersUptodate(String RemoteVers, String LocalVer
      else
      {
       pos_local= sLocal.Pos(" ");
-      if(pos_local>0)
+	  if(pos_local>0)
       {
        sTemp=sLocal.SubString(1,pos_local-1);
        sLocal=sLocal.SubString(pos_local+1,sLocal.Length());
@@ -1034,7 +1044,11 @@ void __fastcall TfrmMain::ThreadDone(TObject *Sender)
 	  if( UpdateLocalBlackListFromRemote(FThread->FResult))
 	  {
 		bNeedUpdateHosts=true;
-		DisplayStatus(DISP_UPDATE_HOSTS);
+		DisplayStatus(DISP_FOUND_UPDATES);
+	  }
+	  else
+	  {
+		ReadMainStatus();
 	  }
   }
  }
@@ -1047,18 +1061,81 @@ void __fastcall TfrmMain::ThreadDone(TObject *Sender)
 }
 void __fastcall TfrmMain::DisplayStatus(int iStatus)
 {
-  switch(iStatus)
-  {
-   case DISP_ALL_DONE:
-				break;
-   case DISP_INSTALL_TO_HOSTS:
-				break;
-   case DISP_UPDATE_HOSTS:
-				break;
-   case DISP_GET_BLACKLIST:
-				 break;
 
-  }
+  try
+  {
+	  DisplayPreloader(false);
+
+	  switch(iStatus)
+	  {
+	   case DISP_ALL_DONE:
+					lblStatus->Caption=constYourcomputerisprotected->Caption+"\n"+constDatabaseversion->Caption+": "+sHostsBlackListVersion;
+					if(iInstallDate>0)
+					{
+					  TDateTime td=(TDateTime)iInstallDate;
+
+						lblStatus->Caption=lblStatus->Caption+"\n"+constInstallationdate->Caption+": "+td.DateString();
+					 }
+					  imgStatus->Picture->Assign( imgOK->Picture);
+					  btInstall->Enabled=false;
+					  btUninstall->Enabled=true;
+					break;
+	   case DISP_INSTALL_TO_HOSTS:
+					  lblStatus->Caption=constClickInstalltosetprotection->Caption;
+					  imgStatus->Picture->Assign( imgInfo->Picture);
+					  btInstall->Caption=constInstall->Caption;
+					  btInstall->Enabled=true;
+					  btUninstall->Enabled=false;
+					   try
+					   {
+						 btInstall->SetFocus();
+					   }
+					   catch(...)
+					   {
+					   }
+					break;
+	   case DISP_FOUND_UPDATES:
+					  lblStatus->Caption=constClickInstallUpdatetoupdateprotection->Caption+"\n"+constNewdatabaseversion->Caption+": "+sRemoteBlackListVersion+"\n"+constDatabaseversion->Caption+": "+sHostsBlackListVersion;
+					  imgStatus->Picture->Assign( imgInfo->Picture);
+					  btInstall->Caption=constInstallUpdate->Caption;
+					  btInstall->Enabled=true;
+					 // btUninstall->Enabled=true;
+					   try
+					   {
+						 btInstall->SetFocus();
+					   }
+					   catch(...)
+					   {
+					   }
+
+					break;
+	   case DISP_NO_BLACKLIST:
+					  lblStatus->Caption=constLocalblacklistdoesnotexist->Caption;
+					  imgStatus->Picture->Assign( imgInfo->Picture);
+					  btInstall->Enabled=false;
+
+					  if(sHostsBlackListVersion.IsEmpty())
+					  {
+						btUninstall->Enabled=false;
+					  }
+					  else
+					  {
+						btUninstall->Enabled=true;
+					  }
+
+					 break;
+	   case DISP_CHECK_UPDATE:
+					  lblStatus->Caption=constCheckingforupdates->Caption;
+					  DisplayPreloader(true);
+
+
+					 break;
+
+	  }
+   }
+   catch(...)
+   {
+   }
 }
 
 bool __fastcall TfrmMain::UpdateLocalBlackListFromRemote(String sRemoteText)
@@ -1073,7 +1150,7 @@ bool bResult=false;
 
 	 WriteLogMessage("DB Version found in text: "+sRemoteBlackListVersion);
 
-	 if(!IsLocalVersUptodate(sRemoteBlackListVersion,sLocalBlackListVersion))
+	 if(!IsLocalVersUptodate(sRemoteBlackListVersion,sHostsBlackListVersion))
 	 {
 	   WriteLogMessage("Remote version is newer than local. We must update local blacklist!");
 	   String sFile=sGetBlackListFilePath();
@@ -1173,6 +1250,7 @@ __fastcall TSSLThread::TSSLThread(bool CreateSuspended, String URL)
 void __fastcall TfrmMain::timUpdateTimer(TObject *Sender)
 {
 	timUpdate->Enabled=false;
+	 DisplayStatus(DISP_CHECK_UPDATE);
 	 CheckUpdateBlackList();
 }
 //---------------------------------------------------------------------------
@@ -1215,6 +1293,81 @@ void __fastcall TfrmMain::mnVisitHomePageClick(TObject *Sender)
 
   ShellExecute(NULL,L"open",L"https://github.com/greatis/Anti-WebMiner",NULL,NULL,SW_SHOW);
 
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::DisplayPreloader(bool bSet)
+{
+  try
+  {
+	   if(bSet)
+	   {
+			imgPreloader->Left=imgStatus->Left;
+			imgPreloader->Top=imgStatus->Top;
+			imgStatus->Visible=false;
+			imgPreloader->Visible=true;
+
+			TGIFImage *gif= (TGIFImage *) imgPreloader->Picture->Graphic;
+			gif->Animate= true;
+			gif->AnimationSpeed =700;
+	   }
+	   else
+	   {
+
+			imgPreloader->Visible=false;
+			imgStatus->Visible=true;
+
+	   }
+  }
+  catch(...)
+  {
+  }
+
+}
+void __fastcall TfrmMain::imgIconClick(TObject *Sender)
+{
+  if(imgPreloader->Visible)
+  {
+	DisplayPreloader(false);
+  }
+  else
+  {
+	DisplayPreloader(true);
+  }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::btUninstallClick(TObject *Sender)
+{
+   UninstallFromHosts();
+   ReadMainStatus();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TfrmMain::btInstallClick(TObject *Sender)
+{
+  InstallIntoHosts();
+  ReadMainStatus();
+
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TfrmMain::imgPreloaderClick(TObject *Sender)
+{
+   try
+   {
+	 if(FThread!=NULL)
+	 {
+	   FThread->Terminate();
+         ReadMainStatus();
+	 }
+   }
+   catch(...)
+   {
+   }
 }
 //---------------------------------------------------------------------------
 

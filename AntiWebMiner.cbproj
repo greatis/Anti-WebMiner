@@ -20,7 +20,7 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<Multithreaded>true</Multithreaded>
-			<PackageImports>vcl.bpi;rtl.bpi;bcbie.bpi;vclx.bpi;vclactnband.bpi;xmlrtl.bpi;bcbsmp.bpi;dbrtl.bpi;vcldb.bpi;vcldbx.bpi;bdertl.bpi;dsnap.bpi;dsnapcon.bpi;TeeUI.bpi;TeeDB.bpi;Tee.bpi;adortl.bpi;vclib.bpi;ibxpress.bpi;IndyCore.bpi;IndySystem.bpi;IndyProtocols.bpi;vclie.bpi;inet.bpi;inetdbbde.bpi;inetdbxpress.bpi;soaprtl.bpi;vclribbon.bpi;dbexpress.bpi;DbxCommonDriver.bpi;DataSnapIndy10ServerTransport.bpi;DataSnapProviderClient.bpi;DataSnapServer.bpi;DbxClientDriver.bpi;DBXInterBaseDriver.bpi;DBXMySQLDriver.bpi;dbxcds.bpi;DBXSybaseASEDriver.bpi;DBXSybaseASADriver.bpi;DBXOracleDriver.bpi;DBXMSSQLDriver.bpi;DBXInformixDriver.bpi;DBXDb2Driver.bpi;VclSmp.bpi;acntBCB2009_R.bpi;gbutton.bpi;ggrid.bpi;gsearch.bpi;metro.bpi;tmsd2009.bpi;wevent.bpi;tmsexd2009.bpi;tmswizd2009.bpi;tmsxlsd2009.bpi;pls2009.bpi;cefd.bpi</PackageImports>
+			<PackageImports>vcl.bpi;rtl.bpi;bcbie.bpi;vclx.bpi;vclactnband.bpi;xmlrtl.bpi;bcbsmp.bpi;dbrtl.bpi;vcldb.bpi;vcldbx.bpi;bdertl.bpi;dsnap.bpi;dsnapcon.bpi;TeeUI.bpi;TeeDB.bpi;Tee.bpi;adortl.bpi;vclib.bpi;ibxpress.bpi;IndyCore.bpi;IndySystem.bpi;IndyProtocols.bpi;vclie.bpi;inet.bpi;inetdbbde.bpi;inetdbxpress.bpi;soaprtl.bpi;vclribbon.bpi;dbexpress.bpi;DbxCommonDriver.bpi;DataSnapIndy10ServerTransport.bpi;DataSnapProviderClient.bpi;DataSnapServer.bpi;DbxClientDriver.bpi;DBXInterBaseDriver.bpi;DBXMySQLDriver.bpi;dbxcds.bpi;DBXSybaseASEDriver.bpi;DBXSybaseASADriver.bpi;DBXOracleDriver.bpi;DBXMSSQLDriver.bpi;DBXInformixDriver.bpi;DBXDb2Driver.bpi;VclSmp.bpi;gbutton.bpi;ggrid.bpi;gsearch.bpi;metro.bpi;tmsd2009.bpi;wevent.bpi;tmsexd2009.bpi;tmswizd2009.bpi;tmsxlsd2009.bpi;pls2009.bpi;cefd.bpi</PackageImports>
 			<LinkPackageImports>rtl.bpi;vcl.bpi</LinkPackageImports>
 			<ProjectType>CppVCLApplication</ProjectType>
 			<AllPackageLibs>rtl.lib;vcl.lib</AllPackageLibs>
@@ -61,6 +61,12 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
+			<CppCompile Include="AntiWebMiner.cpp">
+				<BuildOrder>0</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="SSLCon.cpp">
+				<BuildOrder>3</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="main.cpp">
 				<Form>frmMain</Form>
 				<DependentOn>main.h</DependentOn>
@@ -69,12 +75,6 @@
 			<ResFiles Include="AntiWebMiner.res">
 				<BuildOrder>1</BuildOrder>
 			</ResFiles>
-			<CppCompile Include="AntiWebMiner.cpp">
-				<BuildOrder>0</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="SSLCon.cpp">
-				<BuildOrder>3</BuildOrder>
-			</CppCompile>
 			<FormResources Include="main.dfm"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
@@ -150,19 +150,14 @@
 						<ProjectProperties Name="VerifyPackages">True</ProjectProperties>
 					</ProjectProperties>
 					<Excluded_Packages>
+						<Excluded_Packages Name="C:\Users\Public\Documents\RAD Studio\6.0\BPL\acntBCB2009.bpl">acntBCB2009</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclwbm120.bpl">CodeGear InternetExpress Components</Excluded_Packages>
 						<Excluded_Packages Name="$(BDS)\RaveReports\Lib\dclRave.bpl">Rave Reports 7.6 BE Package</Excluded_Packages>
 						<Excluded_Packages Name="$(BDS)\bin\dclIntraweb_100_120.bpl">VCL for the Web 10.0  Design Package for CodeGear RAD Studio</Excluded_Packages>
 						<Excluded_Packages Name="$(BDS)\bin\dclwebsnap120.bpl">CodeGear WebSnap Components</Excluded_Packages>
 						<Excluded_Packages Name="$(BDS)\bin\bcboffice2k120.bpl">CodeGear C++Builder Office 2000 Servers Package</Excluded_Packages>
 						<Excluded_Packages Name="$(BDS)\bin\bcbofficexp120.bpl">CodeGear C++Builder Office XP Servers Package</Excluded_Packages>
-						<Excluded_Packages Name="$(BDS)\bin\dclwbm120.bpl">CodeGear InternetExpress Components</Excluded_Packages>
-						<Excluded_Packages Name="$(BDS)\bin\dcloffice2k120.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-						<Excluded_Packages Name="$(BDS)\bin\dclofficexp120.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-						<Excluded_Packages Name="C:\Program Files\tmsssoftware\TMS Component Pack\Builder2009\TMSDeD2009.bpl">TMS Component Pack design time support</Excluded_Packages>
 					</Excluded_Packages>
-					<Language>
-						<Language Name="RootDir">C:\CBuilder5\Projects\AntiWebMiner\</Language>
-					</Language>
 				</CPlusPlusBuilder.Personality>
 			</BorlandProject>
 			<ProjectFileVersion>12</ProjectFileVersion>
