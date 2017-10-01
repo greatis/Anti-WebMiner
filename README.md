@@ -1,9 +1,29 @@
-# Anti-WebMiner
+# h1 Anti-WebMiner
 
-Anti-WebMiner blocks the hosts with JS scripts, used for coin mining in web browser.
-Anti-WebMiner modifies %SystemRoot%\System32\drivers\etc\hosts to disable the scripts
+Anti-WebMiner protects your PC against web cryptocurrency miners (JS scripts like Coinhive executed in the browser) by modifying Windows hosts file. 
 
-Platform: Windows
+# Compatibility
+
+Windows XP/2003/Vista/Seven/8/8.1/10 32-bit and 64-bit
+
+# Why?
+
+The coin mining in a browser using scripts like Coinhive is a real problem for everyone.
+These scripts may cause your browsers working slow or fully unresponsive, drain a battery of your notebook.
+Any webmaster may add only one line to a code of website to start monetizing by coin mining.
+
+# How to Protect?
+
+Anti-WebMiner blocks scripts using a "blacklist" database of hosts like "Coinhive".
+Anti-WebMiner modifies a Windows hosts file for disabling connection attempts to "blacklisted" sites.
+
+# Benefits
+ 
+This protection works for all browers. 
+You don't need to install a browser extensions.
+
+
+# Source code
 Language: C++ Builder
 
 Hosts database: blacklist.txt
