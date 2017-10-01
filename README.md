@@ -4,7 +4,16 @@ Anti-WebMiner protects your PC against web cryptocurrency miners (JS scripts lik
 
 ![Screenshot](https://github.com/greatis/Anti-WebMiner/raw/master/images/antiwebminer-screenshot.png)
 
+Download:
+
+[Release](https://github.com/greatis/Anti-WebMiner/releases)
+
+VirusTotal AntiWebMiner.exe: [0/63](https://www.virustotal.com/en/file/91a25c81fc6dea51cc739dbdd38c3fe2383476c6606b799bf6b47c730e171c51/analysis/1506866744/)
+
+
+
 # Compatibility
+
 
 Windows XP/2003/Vista/Seven/8/8.1/10 32-bit and 64-bit
 
