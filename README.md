@@ -17,12 +17,15 @@ Any webmaster may add only one line to a code of website to start monetizing by 
 Anti-WebMiner blocks scripts using a "blacklist" database of hosts like "Coinhive".
 Anti-WebMiner modifies a Windows hosts file for disabling connection attempts to "blacklisted" sites.
 
-# Benefits
+# Benefits!
  
 This protection works for all browers. 
 You don't need to install a browser extensions.
 
+# Raw data
+
 [BlackList](https://raw.githubusercontent.com/greatis/Anti-WebMiner/master/blacklist.txt)
+
 [Ready-to-use hosts file](https://raw.githubusercontent.com/greatis/Anti-WebMiner/master/hosts)
 
 
