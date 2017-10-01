@@ -2,6 +2,8 @@
 
 Anti-WebMiner protects your PC against web cryptocurrency miners (JS scripts like Coinhive executed in the browser) by modifying Windows hosts file. 
 
+![Screenshot](https://github.com/greatis/Anti-WebMiner/raw/master/images/antiwebminer-screenshot.png)
+
 # Compatibility
 
 Windows XP/2003/Vista/Seven/8/8.1/10 32-bit and 64-bit
