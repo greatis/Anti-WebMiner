@@ -22,7 +22,7 @@ Anti-WebMiner modifies a Windows hosts file for disabling connection attempts to
 # Benefits!
  
 This protection works for all browers. 
-You don't need to install a browser extensions.
+You don't need to install a browser extension.
 
 # Raw data
 
@@ -30,6 +30,9 @@ You don't need to install a browser extensions.
 
 [Ready-to-use hosts file](https://raw.githubusercontent.com/greatis/Anti-WebMiner/master/hosts)
 
+# Contributors wanted!
+
+Do you have an addition to "blacklist"? Send me!
 
 # Additional Features
 "Blacklist" updater.
