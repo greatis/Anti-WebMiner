@@ -1,4 +1,4 @@
-# h1 Anti-WebMiner
+# Anti-WebMiner
 
 Anti-WebMiner protects your PC against web cryptocurrency miners (JS scripts like Coinhive executed in the browser) by modifying Windows hosts file. 
 
@@ -22,10 +22,15 @@ Anti-WebMiner modifies a Windows hosts file for disabling connection attempts to
 This protection works for all browers. 
 You don't need to install a browser extensions.
 
+[BlackList](https://raw.githubusercontent.com/greatis/Anti-WebMiner/master/blacklist.txt)
+[Ready-to-use hosts file](https://raw.githubusercontent.com/greatis/Anti-WebMiner/master/hosts)
+
+
+# Additional Features
+"Blacklist" updater.
+Program updater.
 
 # Source code
 Language: C++ Builder
 
-Hosts database: blacklist.txt
-Ready-to-use hosts file: hosts
  
