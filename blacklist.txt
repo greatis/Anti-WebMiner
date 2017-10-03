@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=0.9
+Version=1.0
 [Hosts]
 cnhv.co
 gus.host
@@ -12,3 +12,9 @@ mataharirama.xyz
 listat.biz
 lmodr.biz
 minecrunch.co
+minemytraffic.com
+azvjudwr.info
+jroqvbvw.info
+jyhfuqoh.info
+kdowqlpt.info
+xbasfbno.info
