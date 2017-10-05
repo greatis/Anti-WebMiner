@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.0
+Version=1.1
 [Hosts]
 cnhv.co
 gus.host
@@ -18,3 +18,5 @@ jroqvbvw.info
 jyhfuqoh.info
 kdowqlpt.info
 xbasfbno.info
+coinhive.com
+edgeno.de
