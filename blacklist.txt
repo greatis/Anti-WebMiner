@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.1
+Version=1.2
 [Hosts]
 cnhv.co
 gus.host
@@ -20,3 +20,4 @@ kdowqlpt.info
 xbasfbno.info
 coinhive.com
 edgeno.de
+crypto-loot.com
