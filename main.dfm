@@ -4,7 +4,7 @@ object frmMain: TfrmMain
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Anti-WebMiner'
-  ClientHeight = 571
+  ClientHeight = 591
   ClientWidth = 719
   Color = clBtnFace
   DoubleBuffered = True
@@ -20,7 +20,7 @@ object frmMain: TfrmMain
   TextHeight = 15
   object lblCopyright: TLabel
     Left = 0
-    Top = 448
+    Top = 468
     Width = 719
     Height = 30
     Cursor = crHandPoint
@@ -148,7 +148,7 @@ object frmMain: TfrmMain
   end
   object pnlStatus: TPanel
     Left = 0
-    Top = 478
+    Top = 498
     Width = 719
     Height = 93
     Align = alBottom
@@ -2446,7 +2446,7 @@ object frmMain: TfrmMain
       Caption = 'UnProtect'
     end
     object constInstallUpdate: TMenuItem
-      Caption = 'Update Protection'
+      Caption = 'Update'
     end
     object constYourcomputerisprotected: TMenuItem
       Caption = 'Your computer is protected!'
