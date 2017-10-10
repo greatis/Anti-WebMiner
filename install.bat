@@ -10,5 +10,8 @@ call D:\internet\greatis\new\cert\verisign16\sha-256\1signright.bat D:\internet\
 d:
 cd \internet\greatis\new
 zip antiwebminesetup.zip AntiWebMineSetup.exe
-copy antiwebminesetup.zip C:\CBuilder5\Projects\AntiWebMiner
+rem copy antiwebminesetup.zip C:\CBuilder5\Projects\AntiWebMiner
 
+del D:\internet\greatis\new\antiwebminerportable.zip 
+cd AntiWebMiner 
+zip D:\internet\greatis\new\antiwebminerportable *.*

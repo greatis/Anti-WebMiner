@@ -59,6 +59,16 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
+			<CppCompile Include="SSLCon.cpp">
+				<BuildOrder>3</BuildOrder>
+			</CppCompile>
+			<ResourceCompile Include="vista_man.rc">
+				<Form>vista_man.res</Form>
+				<BuildOrder>4</BuildOrder>
+			</ResourceCompile>
+			<CppCompile Include="AntiWebMiner.cpp">
+				<BuildOrder>0</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="main.cpp">
 				<Form>frmMain</Form>
 				<DependentOn>main.h</DependentOn>
@@ -67,17 +77,6 @@
 			<ResFiles Include="AntiWebMiner.res">
 				<BuildOrder>1</BuildOrder>
 			</ResFiles>
-			<CppCompile Include="AntiWebMiner.cpp">
-				<BuildOrder>0</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="SSLCon.cpp">
-				<BuildOrder>3</BuildOrder>
-			</CppCompile>
-			<ResourceCompile Include="vista_man.rc">
-				<ModuleName>vista_man.rc</ModuleName>
-				<Form>vista_man.res</Form>
-				<BuildOrder>4</BuildOrder>
-			</ResourceCompile>
 			<FormResources Include="main.dfm"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
@@ -104,9 +103,9 @@
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
 						<VersionInfo Name="MajorVer">1</VersionInfo>
-						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="MinorVer">1</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">1</VersionInfo>
+						<VersionInfo Name="Build">2</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -118,13 +117,13 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Greatis Software</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">Anti-WebMiner prevents coin mining in web browser</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">1.0.0.1</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.1.0.2</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">AntiWebMiner.exe </VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright">Greatis Software</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks"/>
 						<VersionInfoKeys Name="OriginalFilename">AntiWebMiner.exe </VersionInfoKeys>
 						<VersionInfoKeys Name="ProductName">Anti-WebMiner</VersionInfoKeys>
-						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">1.1.0.2</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
 					<Debugging>
@@ -161,9 +160,6 @@
 						<Excluded_Packages Name="$(BDS)\bin\bcboffice2k120.bpl">CodeGear C++Builder Office 2000 Servers Package</Excluded_Packages>
 						<Excluded_Packages Name="$(BDS)\bin\bcbofficexp120.bpl">CodeGear C++Builder Office XP Servers Package</Excluded_Packages>
 					</Excluded_Packages>
-					<Language>
-						<Language Name="RootDir">C:\CBuilder5\Projects\AntiWebMiner\</Language>
-					</Language>
 				</CPlusPlusBuilder.Personality>
 			</BorlandProject>
 			<ProjectFileVersion>12</ProjectFileVersion>

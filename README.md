@@ -31,6 +31,10 @@ Anti-WebMiner modifies a Windows hosts file for disabling connection attempts to
 This protection works for all browers. 
 You don't need to install a browser extension.
 
+# Batch Mode
+Run AntiWebMiner.exe with parameter "/c" to auitomatically check & update blacklist in background (no GUI).
+AntiWebMiner.exe /c
+
 # Raw data
 
 [BlackList](https://raw.githubusercontent.com/greatis/Anti-WebMiner/master/blacklist.txt)
@@ -48,4 +52,5 @@ Program updater.
 # Source code
 Language: C++ Builder
 
- 
+# Icons from:
+https://icons8.com

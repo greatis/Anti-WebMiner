@@ -11,6 +11,7 @@
 #include <Menus.hpp>
 #include <pngimage.hpp>
 #include <GIFImg.hpp>
+#include <Buttons.hpp>
 //---------------------------------------------------------------------------
 
 class TSSLThread : public TThread
@@ -52,7 +53,6 @@ __published:	// IDE-managed Components
 	TImage *imgIcon;
 	TLabel *lblHeader;
 	TLabel *lblSubHeader;
-	TButton *btInstall;
 	TMenuItem *constInstall;
 	TMenuItem *constUninstall;
 	TMenuItem *constInstallUpdate;
@@ -66,7 +66,6 @@ __published:	// IDE-managed Components
 	TMenuItem *constYourcomputerisprotected;
 	TMenuItem *constDatabaseversion;
 	TMenuItem *constInstallationdate;
-	TButton *btUninstall;
 	TButton *btUpdate;
 	TMenuItem *constClickInstalltosetprotection;
 	TMenuItem *constClickInstallUpdatetoupdateprotection;
@@ -83,6 +82,15 @@ __published:	// IDE-managed Components
 	TImage *imgError;
 	TLabel *lblCopyright;
 	TButton *btLicense;
+	TMenuItem *ShowWindowsHostsFile1;
+	TBitBtn *btInstall;
+	TBitBtn *btUninstall;
+	TPanel *pnlProtected;
+	TImage *Image1;
+	TLabel *Label1;
+	TMenuItem *N3;
+	TMenuItem *CreateReadytoUseHosts1;
+	TMenuItem *N4;
 	void __fastcall timUpdateTimer(TObject *Sender);
 	void __fastcall mnExitClick(TObject *Sender);
 	void __fastcall mnUninstallClick(TObject *Sender);
@@ -98,6 +106,8 @@ __published:	// IDE-managed Components
 	void __fastcall btDownloadClick(TObject *Sender);
 	void __fastcall btLicenseClick(TObject *Sender);
 	void __fastcall lblCopyrightClick(TObject *Sender);
+	void __fastcall ShowWindowsHostsFile1Click(TObject *Sender);
+	void __fastcall CreateReadytoUseHosts1Click(TObject *Sender);
 private:	// User declarations
 
 		  TStringList *strHosts;
@@ -147,8 +157,15 @@ private:	// User declarations
 		  String __fastcall TfrmMain::sGetBlackListVersion(String sFile);
 
 		  bool __fastcall TfrmMain::IsLocalVersUptodate(String RemoteVers, String LocalVers);
-		  void __fastcall TfrmMain::CheckUpdates();
-		  void __fastcall TfrmMain::ThreadDone(TObject *Sender);
+		  // Program/Database Updating
+		  void __fastcall TfrmMain::CheckUpdates(); //Async version
+		  void __fastcall TfrmMain::ThreadDone(TObject *Sender);  // Func aftrer finishing thread
+
+		  bool  __fastcall TfrmMain::CheckUpdatesSynchronous(int iWhatUpdate); // Sync version
+
+		  bool  __fastcall TfrmMain::ProgramUpdateShowStatus(String sMemIniFile);
+		  bool  __fastcall TfrmMain::BlackListUpdateShowStatus(String sMemIniFile);
+
 		  String __fastcall TfrmMain::sGetDBVersionFromStrings(TStringList *str);
 		  bool __fastcall TfrmMain::UpdateLocalBlackListFromRemote(String sRemoteText);
 
@@ -158,11 +175,13 @@ private:	// User declarations
 		  // UI functions
 		   // Main router
 		  void __fastcall TfrmMain::DisplayStatus(int iStatus);
+
 		  // refresh functon
 		  bool __fastcall TfrmMain::ReadMainStatus();
 
 		  // display preloader icon
 		  void __fastcall TfrmMain::DisplayPreloader(bool bSet);
+		  void __fastcall TfrmMain::ShowProtectButton(bool bShow);
 
 
 
@@ -197,6 +216,10 @@ void __fastcall WriteLogMessage(AnsiString sText);
 
 #define DISP_FATAL_ERROR      -1
 
-#define MAIN_VERS String("1.0.0.1")
+#define MAIN_VERS String("1.1.0.2")
 
+
+#define CHECK_UPD_BLACKLIST 1
+#define CHECK_UPD_PROGRAM  2
+#define CHECK_UPD_ALL      3
 #endif

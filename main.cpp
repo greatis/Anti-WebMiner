@@ -41,9 +41,30 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
    LogFileName=""; // disable writing to log file
  }
 
-	   WriteLogMessage(MAIN_LABEL+" "+MAIN_VERS+" "+Now().DateTimeString());
+   WriteLogMessage(MAIN_LABEL+" "+MAIN_VERS+" "+Now().DateTimeString());
 
-	   if(ReadMainStatus())
+	sHostsPath=sGetHostsPath();
+
+ try
+ {
+   int re=ParamCount();
+	  if(ParamCount()>0)
+	  {
+		if(ParamStr(1)=="/c") // check for black list updating. for using in batch mode or from service
+		{
+		  Application->ShowMainForm=false;
+		  CheckUpdatesSynchronous(CHECK_UPD_BLACKLIST);
+		  Application->Terminate();
+		  return;
+		}
+	  }
+  }
+  catch(...)
+  {
+  }
+
+
+	   if(ReadMainStatus()) // if no fatal error, start updating in thread
 	   {
 		timUpdate->Enabled=true;
 	   }
@@ -78,7 +99,7 @@ bool __fastcall TfrmMain::ReadMainStatus()
 	   WriteLogMessage("Hosts Path= "+sHostsPath);
 	 if(!sHostsPath.IsEmpty())
 	 {
-	   sHostsPath=sHostsPath+"hosts";
+
 	   int iStart=-1;
 	   int iEnd=-1;
 
@@ -280,12 +301,21 @@ return bResult;
 String __fastcall TfrmMain::sGetHostsPath()
 {
  String sDefPath="%SystemRoot%\\System32\\drivers\\etc";
-   // Todo
-   // Check the DatabasePath in registry
-   // Does it work in Windows 7-10?
+ String sResult;
+  try
+  {
+	   sResult=sExpandEnvStrings(sDefPath);
+	  if(sResult.IsEmpty())
+	  {
+	   return "";
+	  }
+	   sResult=AddLastSlash(sResult)+"hosts";
+  }
+  catch(...)
+  {
+  }
 
-  return AddLastSlash(sExpandEnvStrings(sDefPath));
-
+   return sResult;
 }
 
 String __fastcall TfrmMain::sExpandEnvStrings(String sSource)
@@ -1046,36 +1076,16 @@ void __fastcall TfrmMain::ThreadDone(TObject *Sender)
 	 int iResult=FThread->iResult;
 	if(bCheckProgramUpdate)
 	{
-	   sRemoteProgramVersion=sGetVersionFromMemoryIni( FThread->FResult);
-
-		 if(!IsLocalVersUptodate(sRemoteProgramVersion, MAIN_VERS))
-		 {
-			DisplayStatus(DISP_FOUND_PROGRAM_UPDATES);
-
-		 }
-		 else
-		 {
-		   ReadMainStatus();
-		 }
-
+		ProgramUpdateShowStatus(FThread->FResult);
 	}
 	else
 	{
-	  if( UpdateLocalBlackListFromRemote(FThread->FResult))
-	  {
-		bNeedUpdateHosts=true;
-		if(sHostsBlackListVersion.IsEmpty())
-		{
-		   DisplayStatus(DISP_INSTALL_TO_HOSTS);
-		}
-		else
-		{
-		  DisplayStatus(DISP_FOUND_UPDATES);
-		}
-	  }
+	 if(BlackListUpdateShowStatus(FThread->FResult))
+	 {
+	   // nothing  to do
+	 }
 	  else
 	  {
-	   //	ReadMainStatus();
 		timProgramCheckUpdate->Enabled=true;
 	  }
 	 }
@@ -1099,15 +1109,15 @@ void __fastcall TfrmMain::DisplayStatus(int iStatus)
 	  {
 	   case DISP_FATAL_ERROR:  lblStatus->Caption= sCriticalError;
 							   imgStatus->Picture->Assign(imgError->Picture);
-								btInstall->Enabled=false;
+                                ShowProtectButton(false);
 
 								  if(sHostsBlackListVersion.IsEmpty())
 								 {
-									btUninstall->Enabled=false;
+									btUninstall->Visible=false;
 								  }
 								  else
 								  {
-									btUninstall->Enabled=true;
+									btUninstall->Visible=true;
 								  }
 
 
@@ -1121,18 +1131,21 @@ void __fastcall TfrmMain::DisplayStatus(int iStatus)
 						lblStatus->Caption=lblStatus->Caption+"\n"+constInstallationdate->Caption+": "+td.DateString();
 					 }
 					  imgStatus->Picture->Assign( imgOK->Picture);
-					  btInstall->Enabled=false;
-					  btUninstall->Enabled=true;
+					  ShowProtectButton(false);
+					  btUninstall->Visible=true;
 					break;
 	   case DISP_INSTALL_TO_HOSTS:
 					  lblStatus->Caption=constClickInstalltosetprotection->Caption;
 					  imgStatus->Picture->Assign( imgInfo->Picture);
 					  btInstall->Caption=constInstall->Caption;
-					  btInstall->Enabled=true;
-					  btUninstall->Enabled=false;
+					  ShowProtectButton(true);
+					  btUninstall->Visible=false;
 					   try
 					   {
+						if(Visible)
+						{
 						 btInstall->SetFocus();
+						}
 					   }
 					   catch(...)
 					   {
@@ -1142,7 +1155,7 @@ void __fastcall TfrmMain::DisplayStatus(int iStatus)
 					  lblStatus->Caption=constClickInstallUpdatetoupdateprotection->Caption+"\n"+constNewdatabaseversion->Caption+": "+sRemoteBlackListVersion+"\n"+constDatabaseversion->Caption+": "+sHostsBlackListVersion;
 					  imgStatus->Picture->Assign( imgInfo->Picture);
 					  btInstall->Caption=constInstallUpdate->Caption;
-					  btInstall->Enabled=true;
+					  ShowProtectButton(true);
 					 // btUninstall->Enabled=true;
 					   try
 					   {
@@ -1156,15 +1169,15 @@ void __fastcall TfrmMain::DisplayStatus(int iStatus)
 	   case DISP_NO_BLACKLIST:
 					  lblStatus->Caption=constLocalblacklistdoesnotexist->Caption;
 					  imgStatus->Picture->Assign( imgInfo->Picture);
-					  btInstall->Enabled=false;
+					  ShowProtectButton(false);
 
 					  if(sHostsBlackListVersion.IsEmpty())
 					  {
-						btUninstall->Enabled=false;
+						btUninstall->Visible=false;
 					  }
 					  else
 					  {
-						btUninstall->Enabled=true;
+						btUninstall->Visible=true;
 					  }
 
 					 break;
@@ -1485,6 +1498,185 @@ void __fastcall TfrmMain::btLicenseClick(TObject *Sender)
 void __fastcall TfrmMain::lblCopyrightClick(TObject *Sender)
 {
   ShellExecute(NULL,L"open",L"http://www.greatis.com",NULL,NULL,SW_SHOW);
+
+}
+//---------------------------------------------------------------------------
+
+
+bool  __fastcall TfrmMain::CheckUpdatesSynchronous(int iWhatUpdate)
+{
+
+   if(iWhatUpdate==0)
+   {
+	 return false;
+   }
+  String sURL=URL_BLACKLIST;
+  String sText;
+  int bResult=false;
+  try
+  {
+	if(iWhatUpdate&CHECK_UPD_PROGRAM)
+	{
+	  sURL=URL_PROGRAM_VERSION;
+	}
+
+	int iResult= GetInternetRequest(sURL, sText);
+	   if( iResult<=0) // Failure)
+	   {
+		  WriteLogMessage("CheckUpdatesSynchronous: Failed on GetInternetRequest: "+sURL );
+		  return false;
+	   }
+
+
+
+			if(iWhatUpdate&CHECK_UPD_PROGRAM)
+			{
+			 bResult=ProgramUpdateShowStatus(sText);
+			}
+			else
+			{
+			 if(BlackListUpdateShowStatus(sText))
+			 {
+				bResult=true;  // need update black list
+				 InstallIntoHosts();
+			 }
+			  else
+			  {
+				if(iWhatUpdate==CHECK_UPD_ALL)
+				{
+				  bResult= CheckUpdatesSynchronous(CHECK_UPD_PROGRAM);
+				}
+			  }
+			 }
+
+
+   }
+   catch(...)
+   {
+   }
+
+   return bResult;
+
+}
+
+
+bool  __fastcall TfrmMain::ProgramUpdateShowStatus(String sMemIniFile)
+{
+	bool bResult=false;
+	try
+	{
+	   sRemoteProgramVersion=sGetVersionFromMemoryIni( sMemIniFile);
+
+		 if(!IsLocalVersUptodate(sRemoteProgramVersion, MAIN_VERS))
+		 {
+			DisplayStatus(DISP_FOUND_PROGRAM_UPDATES);
+			bResult=true;
+
+		 }
+		 else
+		 {
+		   ReadMainStatus();
+		 }
+	}
+	catch(...)
+	{
+	}
+	return bResult;
+}
+
+
+bool  __fastcall TfrmMain::BlackListUpdateShowStatus(String sMemIniFile)
+{
+ bool bResult=false;
+	try
+	{
+
+	  if( UpdateLocalBlackListFromRemote(sMemIniFile))
+	  {
+	   bResult=true;
+		bNeedUpdateHosts=true;
+		if(sHostsBlackListVersion.IsEmpty())
+		{
+		   DisplayStatus(DISP_INSTALL_TO_HOSTS);
+		}
+		else
+		{
+		  DisplayStatus(DISP_FOUND_UPDATES);
+		}
+	  }
+	}
+	catch(...)
+	{
+	}
+	return bResult;
+}
+
+
+void __fastcall TfrmMain::ShowWindowsHostsFile1Click(TObject *Sender)
+{
+	ShellExecute(NULL,L"open",L"notepad.exe",sHostsPath.t_str(),NULL,SW_SHOW);
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmMain::ShowProtectButton(bool bShow)
+{
+   try
+   {
+		  if(bShow)
+		  {
+			pnlProtected->Visible=false;
+			btInstall->Visible=true;
+		  }
+		  else
+		  {
+			btInstall->Visible=false;
+			pnlProtected->Visible=true;
+		  }
+	}
+	catch(...)
+	{
+	}
+
+}
+void __fastcall TfrmMain::CreateReadytoUseHosts1Click(TObject *Sender)
+{
+	TStringList *strServList=NULL;
+	 String sLocalBlackList=sGetBlackListFilePath();
+	 if(!FileExists(sLocalBlackList))
+	 {
+		WriteLogMessage("Local Black List not found: "+sLocalBlackList);
+		 DisplayStatus(DISP_NO_BLACKLIST);
+	 }
+	 else
+	 {
+		sLocalBlackListVersion=sGetBlackListVersion(sGetBlackListFilePath());
+		WriteLogMessage("Black List Version= "+sLocalBlackListVersion);
+
+		 try
+		 {
+		    strHosts->Clear();
+			strServList=new TStringList;
+
+			strServList->Sorted=true;
+			strServList->Duplicates=dupIgnore;
+			strServList->Add("coin-hive.com");
+			strServList->Add("jsecoin.com");
+
+			ReadBlackListFile(ExtractFilePath(ParamStr(0))+BLACKLIST_DB, strServList);
+
+			AddTostrHosts(strServList);
+			String sOutPath=ExtractFilePath(ParamStr(0))+"hosts";
+			strHosts->SaveToFile(sOutPath);
+			WriteLogMessage("Hosts saved to: "+ sOutPath);
+			ShellExecute(NULL,L"open",L"notepad.exe",sOutPath.t_str(),NULL,SW_SHOW);
+		 }
+		 catch(...)
+		 {
+		 }
+
+
+	 }
+		 delete  strServList;
 
 }
 //---------------------------------------------------------------------------

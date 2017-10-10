@@ -1,12 +1,11 @@
 [Anti-WebMiner]
-Version=1.3
+Version=1.4
 [Hosts]
 cnhv.co
 gus.host
 jsecoin.com
-miner.pr0gramm.com
+pr0gramm.com
 coin-hive.com
-jsecoin.com
 reasedoper.pw
 mataharirama.xyz
 listat.biz
