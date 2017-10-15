@@ -34,6 +34,7 @@ oload.info
 podrltid.info
 ppoi.org
 pr0gramm.com
+miner.pr0gramm.com
 projectpoi.com
 reasedoper.pw
 server.jsecoin.com
