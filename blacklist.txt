@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.4
+Version=1.5
 [Hosts]
 cnhv.co
 gus.host
@@ -22,3 +22,6 @@ edgeno.de
 crypto-loot.com
 ppoi.org
 2giga.link
+kisshentai.net
+coinerra.com
+kiwifarms.net
