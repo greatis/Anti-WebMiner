@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.6
+Version=1.7
 [Hosts]
 cnhv.co
 gus.host
@@ -26,3 +26,10 @@ kisshentai.net
 coinerra.com
 kiwifarms.net
 minero.pw
+kissdoujin.com
+oload.info
+goodolddownloads.com
+anime.reactor.cc
+hashforcash.us
+joyreactor.cc
+projectpoi.com
