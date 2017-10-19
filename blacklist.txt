@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.7
+Version=1.8
 [Hosts]
 cnhv.co
 gus.host
@@ -33,3 +33,6 @@ anime.reactor.cc
 hashforcash.us
 joyreactor.cc
 projectpoi.com
+coinhive-manager.com
+coinblind.com
+coin-have.com
