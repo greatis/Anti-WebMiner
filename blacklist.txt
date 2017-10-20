@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.8
+Version=1.9
 [Hosts]
 cnhv.co
 gus.host
@@ -36,3 +36,4 @@ projectpoi.com
 coinhive-manager.com
 coinblind.com
 coin-have.com
+coinnebula.com
