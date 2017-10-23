@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.9
+Version=1.10
 [Hosts]
 cnhv.co
 gus.host
@@ -37,3 +37,13 @@ coinhive-manager.com
 coinblind.com
 coin-have.com
 coinnebula.com
+afminer.com
+dmdamedia.hu
+hit.gemius.pl
+auroramine.com
+capodannoinversilia.com
+coinminerz.com
+api.inwemo.com
+minero-proxy-01.now.sh
+minero-proxy-02.now.sh
+minero-proxy-03.now.sh
