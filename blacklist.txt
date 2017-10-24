@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.10
+Version=1.11
 [Hosts]
 cnhv.co
 gus.host
@@ -47,3 +47,4 @@ api.inwemo.com
 minero-proxy-01.now.sh
 minero-proxy-02.now.sh
 minero-proxy-03.now.sh
+webmine.cz
