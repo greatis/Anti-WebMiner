@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.11
+Version=1.12
 [Hosts]
 cnhv.co
 gus.host
@@ -48,3 +48,4 @@ minero-proxy-01.now.sh
 minero-proxy-02.now.sh
 minero-proxy-03.now.sh
 webmine.cz
+3104709642
