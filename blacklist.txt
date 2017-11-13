@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.14
+Version=1.15
 [Hosts]
 cnhv.co
 gus.host
@@ -53,3 +53,4 @@ monerominer.rocks
 coinlab.biz
 cloudcoins.co
 papoto.com
+ad-miner.com
