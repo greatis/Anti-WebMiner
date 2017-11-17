@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.16
+Version=1.17
 [Hosts]
 cnhv.co
 gus.host
@@ -56,3 +56,5 @@ papoto.com
 ad-miner.com
 rocks.io
 cookiescript.info
+party-nngvitbizn.now.sh
+cookiescriptcdn.pro
