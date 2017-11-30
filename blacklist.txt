@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.17
+Version=1.18
 [Hosts]
 cnhv.co
 gus.host
@@ -58,3 +58,4 @@ rocks.io
 cookiescript.info
 party-nngvitbizn.now.sh
 cookiescriptcdn.pro
+yourporn.sexy
