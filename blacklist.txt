@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.18
+Version=1.19
 [Hosts]
 cnhv.co
 gus.host
@@ -59,3 +59,6 @@ cookiescript.info
 party-nngvitbizn.now.sh
 cookiescriptcdn.pro
 yourporn.sexy
+d3iz6lralvg77g.cloudfront.net
+hatevery.info
+elthamely.com
