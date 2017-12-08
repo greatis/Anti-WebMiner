@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.19
+Version=1.20
 [Hosts]
 cnhv.co
 gus.host
@@ -62,3 +62,7 @@ yourporn.sexy
 d3iz6lralvg77g.cloudfront.net
 hatevery.info
 elthamely.com
+minr.pw
+ron.si
+kjli.fi
+nullrefexcep.com
