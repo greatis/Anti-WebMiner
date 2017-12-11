@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.20
+Version=1.21
 [Hosts]
 cnhv.co
 gus.host
@@ -66,3 +66,7 @@ minr.pw
 ron.si
 kjli.fi
 nullrefexcep.com
+cieh.mx
+185.14.28.10
+rove.cl
+coinimp.com
