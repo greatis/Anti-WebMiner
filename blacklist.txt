@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.22
+Version=1.23
 [Hosts]
 cnhv.co
 gus.host
@@ -74,3 +74,4 @@ statistic.date
 static-cnt.bid
 hallaert.online
 hashing.win
+cloudcdn.gdn
