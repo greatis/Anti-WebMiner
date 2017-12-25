@@ -1,4 +1,4 @@
-# Anti-WebMiner Start 1.24 43089
+# Anti-WebMiner Start 1.25 43094
 0.0.0.0 185.14.28.10
 0.0.0.0 2giga.link
 0.0.0.0 3104709642
@@ -7,11 +7,14 @@
 0.0.0.0 afminer.com
 0.0.0.0 anime.reactor.cc
 0.0.0.0 api.inwemo.com
+0.0.0.0 aservices.party
+0.0.0.0 audioknigi.club
 0.0.0.0 auroramine.com
 0.0.0.0 azvjudwr.info
 0.0.0.0 brominer.com
 0.0.0.0 capodannoinversilia.com
 0.0.0.0 cieh.mx
+0.0.0.0 clod.pw
 0.0.0.0 cloudcdn.gdn
 0.0.0.0 cloudcoins.co
 0.0.0.0 cnhv.co
@@ -31,22 +34,26 @@
 0.0.0.0 cookiescriptcdn.pro
 0.0.0.0 crypto-loot.com
 0.0.0.0 cryptoloot.pro
+0.0.0.0 cryptonoter.com
 0.0.0.0 d1e1rbybdt265x.cloudfront.net
 0.0.0.0 d3iz6lralvg77g.cloudfront.net
 0.0.0.0 dmdamedia.hu
 0.0.0.0 edgeno.de
 0.0.0.0 elthamely.com
 0.0.0.0 fili.tv
+0.0.0.0 g-content.bid
 0.0.0.0 goodkino.biz
 0.0.0.0 goodolddownloads.com
 0.0.0.0 gridcash.net
 0.0.0.0 gridiogrid.com
 0.0.0.0 gus.host
 0.0.0.0 hallaert.online
+0.0.0.0 harvest.surge.sh
 0.0.0.0 hashforcash.us
 0.0.0.0 hashing.win
 0.0.0.0 hatevery.info
 0.0.0.0 hit.gemius.pl
+0.0.0.0 igrid.org
 0.0.0.0 joyreactor.cc
 0.0.0.0 jroqvbvw.info
 0.0.0.0 jsccnn.com
@@ -67,6 +74,7 @@
 0.0.0.0 minero-proxy-02.now.sh
 0.0.0.0 minero-proxy-03.now.sh
 0.0.0.0 minr.pw
+0.0.0.0 monerise.com
 0.0.0.0 monero-miner.com
 0.0.0.0 monerominer.rocks
 0.0.0.0 noblock.pro
@@ -84,10 +92,13 @@
 0.0.0.0 rove.cl
 0.0.0.0 safelinkconverter.com
 0.0.0.0 salamaleyum.com
+0.0.0.0 sparechange.io
 0.0.0.0 static-cnt.bid
 0.0.0.0 statistic.date
 0.0.0.0 sunhd.info
 0.0.0.0 webmine.cz
+0.0.0.0 webminerpool.com
+0.0.0.0 wp-monero-miner.de
 0.0.0.0 xbasfbno.info
 0.0.0.0 yourporn.sexy
 # Anti-WebMiner End

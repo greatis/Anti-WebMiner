@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.24
+Version=1.25
 [Hosts]
 cnhv.co
 gus.host
@@ -93,3 +93,15 @@ d1e1rbybdt265x.cloudfront.net
 monero-miner.com
 coinrail.io
 safelinkconverter.com
+aservices.party
+audioknigi.club
+wp-monero-miner.de
+igrid.org
+hashing.win
+g-content.bid
+harvest.surge.sh
+cryptonoter.com
+monerise.com
+sparechange.io
+webminerpool.com
+clod.pw
