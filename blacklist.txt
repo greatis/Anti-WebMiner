@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.26
+Version=1.27
 [Hosts]
 cnhv.co
 gus.host
@@ -107,3 +107,4 @@ webminerpool.com
 clod.pw
 goodkino.biz
 openkatalog.com
+c7e935.netlify.com
