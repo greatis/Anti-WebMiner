@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.28
+Version=1.29
 [Hosts]
 cnhv.co
 gus.host
@@ -112,3 +112,9 @@ hemnes.win
 akvideo.stream
 filmgoo.org
 zona.video
+host.d-ns.ga
+baiduccdn1.com
+jscdndel.com
+mine.nahnoji.cz
+goredirect.party
+cryptobara.com
