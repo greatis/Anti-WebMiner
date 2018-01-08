@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.29
+Version=1.30
 [Hosts]
 cnhv.co
 gus.host
@@ -118,3 +118,9 @@ jscdndel.com
 mine.nahnoji.cz
 goredirect.party
 cryptobara.com
+vcfs6ip5h6.bid
+kickass.cd
+morningdigit.com
+thevideo.ch
+thevideo.us
+thevideo.me
