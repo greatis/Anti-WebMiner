@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.34
+Version=1.35
 [Hosts]
 cnhv.co
 gus.host
@@ -130,3 +130,8 @@ webmining.co
 analytics.blue
 befirstcdn.com
 cdn.jquery-uim.download
+52.80.10.9
+torrent.pw
+webassembly.stream
+chainblock.science
+hodling.faith
