@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.36
+Version=1.37
 [Hosts]
 cnhv.co
 gus.host
@@ -136,3 +136,4 @@ webassembly.stream
 chainblock.science
 hodling.faith
 futeboltv.com
+authedmine.com
