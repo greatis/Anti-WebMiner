@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.38
+Version=1.39
 [Hosts]
 cnhv.co
 gus.host
@@ -127,6 +127,7 @@ thevideo.me
 kinoprofi.org
 bablace.com
 webmining.co
+adless.io
 analytics.blue
 befirstcdn.com
 cdn.jquery-uim.download
