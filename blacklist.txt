@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.39
+Version=1.40
 [Hosts]
 cnhv.co
 gus.host
@@ -139,3 +139,11 @@ hodling.faith
 futeboltv.com
 authedmine.com
 pan.whathyx.com
+web.dle-news.pw
+xmrminingproxy.com
+webmine.pro
+freecontent.bid
+hodlers.party
+monkeyminer.net
+cpu2cash.link
+butcalve.com
