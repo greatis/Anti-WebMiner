@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.42
+Version=1.43
 [Hosts]
 cnhv.co
 gus.host
@@ -166,3 +166,4 @@ hodling.faith
 1q2w3.fun
 candid.zone
 lewd.ninja
+devappgrant.space
