@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.43
+Version=1.44
 [Hosts]
 cnhv.co
 gus.host
@@ -167,3 +167,6 @@ hodling.faith
 candid.zone
 lewd.ninja
 devappgrant.space
+kinohabr.net
+ledhenone.com
+minescripts.info
