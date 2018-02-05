@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.44
+Version=1.45
 [Hosts]
 cnhv.co
 gus.host
@@ -170,3 +170,12 @@ devappgrant.space
 kinohabr.net
 ledhenone.com
 minescripts.info
+piti.bplaced.net
+crypto-webminer.com
+ajplugins.com
+cfcdist.gdn
+cfceu.duckdns.org
+ledhenone.com
+cryweb.github.io
+cpufan.club
+crywebber.github.io
