@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.45
+Version=1.46
 [Hosts]
 cnhv.co
 gus.host
@@ -179,3 +179,8 @@ ledhenone.com
 cryweb.github.io
 cpufan.club
 crywebber.github.io
+webminepool.com
+minero.cc
+marcycoin.org
+techhome-js.github.io
+coin-service.com
