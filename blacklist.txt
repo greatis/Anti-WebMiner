@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.46
+Version=1.47
 [Hosts]
 cnhv.co
 gus.host
@@ -184,3 +184,11 @@ minero.cc
 marcycoin.org
 techhome-js.github.io
 coin-service.com
+gustaver.ddns.net
+cryptown.netlify.com
+msg-2.me
+ewtuyytdf45.com
+mutuza.win
+vzhjnorkudcxbiy.com
+sleazyneasy.com
+player.h-cdn.com
