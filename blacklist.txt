@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.47
+Version=1.48
 [Hosts]
 cnhv.co
 gus.host
@@ -192,3 +192,4 @@ mutuza.win
 vzhjnorkudcxbiy.com
 sleazyneasy.com
 player.h-cdn.com
+shrink-service.it
