@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.48
+Version=1.49
 [Hosts]
 cnhv.co
 gus.host
@@ -193,3 +193,9 @@ vzhjnorkudcxbiy.com
 sleazyneasy.com
 player.h-cdn.com
 shrink-service.it
+cfcnet.gdn
+cfcs1.duckdns.org
+greenindex.dynamic-dns.net
+sighash.info
+coiner.site
+freecontent.stream

@@ -1,4 +1,4 @@
-# Anti-WebMiner Start 1.48 43141
+# Anti-WebMiner Start 1.49 43144
 0.0.0.0 185.14.28.10
 0.0.0.0 1q2w3.fun
 0.0.0.0 2giga.link
@@ -31,6 +31,8 @@
 0.0.0.0 cdn.jquery-uim.download
 0.0.0.0 cfcdist.gdn
 0.0.0.0 cfceu.duckdns.org
+0.0.0.0 cfcnet.gdn
+0.0.0.0 cfcs1.duckdns.org
 0.0.0.0 chainblock.science
 0.0.0.0 cieh.mx
 0.0.0.0 clod.pw
@@ -38,6 +40,7 @@
 0.0.0.0 cloudcoins.co
 0.0.0.0 cnhv.co
 0.0.0.0 coinblind.com
+0.0.0.0 coiner.site
 0.0.0.0 coinerra.com
 0.0.0.0 coin-have.com
 0.0.0.0 coinhive.com
@@ -76,6 +79,7 @@
 0.0.0.0 freecontent.bid
 0.0.0.0 freecontent.loan
 0.0.0.0 freecontent.racing
+0.0.0.0 freecontent.stream
 0.0.0.0 futeboltv.com
 0.0.0.0 gasolina.ml
 0.0.0.0 g-content.bid
@@ -83,6 +87,7 @@
 0.0.0.0 goodolddownloads.com
 0.0.0.0 googleanalytcs.com
 0.0.0.0 goredirect.party
+0.0.0.0 greenindex.dynamic-dns.net
 0.0.0.0 gridcash.net
 0.0.0.0 gridiogrid.com
 0.0.0.0 gus.host
@@ -157,6 +162,7 @@
 0.0.0.0 salamaleyum.com
 0.0.0.0 sen-to-zdrowie.ml
 0.0.0.0 shrink-service.it
+0.0.0.0 sighash.info
 0.0.0.0 sleazyneasy.com
 0.0.0.0 sparechange.io
 0.0.0.0 stackpathdns.com
