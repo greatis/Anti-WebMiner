@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.52
+Version=1.53
 [Hosts]
 cnhv.co
 gus.host
@@ -146,7 +146,6 @@ cpu2cash.link
 butcalve.com
 etacontent.com
 webminepool.tk
-stackpathdns.com
 googleanalytcs.com
 coinpirate.cf
 a-o.ninja
@@ -291,3 +290,13 @@ toftofcal.com
 interestingz.pw
 vidfile.net
 worker.salon.com
+silimbompom.com
+cfcdist.loan
+nunu-001.now.sh
+traffic-optical-service.info
+nablabee.com
+dzizsih.ru
+nddmcconmqsy.ru
+unrummaged.com
+fruitice.realnetwrk.com
+synconnector.com
