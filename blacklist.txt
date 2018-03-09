@@ -1,10 +1,10 @@
 [Anti-WebMiner]
-Version=1.53
+Version=1.54
 [Hosts]
 cnhv.co
 gus.host
 jsecoin.com
-pr0gramm.com
+miner.pr0gramm.com
 coin-hive.com
 reasedoper.pw
 mataharirama.xyz
@@ -300,3 +300,14 @@ nddmcconmqsy.ru
 unrummaged.com
 fruitice.realnetwrk.com
 synconnector.com
+tgtvbngp.ru
+okexysylgzo.ru
+etzbnfuigipwvs.ru
+altavista.ovh
+0x1f4b0.com
+1q2w3.website
+oinkinns.tk
+adrenali.gq
+bhzejltg.info
+pzoifaum.info
+intersportv.com
