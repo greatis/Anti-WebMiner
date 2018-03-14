@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.54
+Version=1.55
 [Hosts]
 cnhv.co
 gus.host
@@ -311,3 +311,12 @@ adrenali.gq
 bhzejltg.info
 pzoifaum.info
 intersportv.com
+stati.bid
+aalbbh84.info
+ajcryptominer.com
+datasecu.download
+jquery-cdn.download
+traffic-service.info
+hhb123.tk
+firmware.center
+wilf.cn
