@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.55
+Version=1.56
 [Hosts]
 cnhv.co
 gus.host
@@ -320,3 +320,11 @@ traffic-service.info
 hhb123.tk
 firmware.center
 wilf.cn
+mepirtedic.com
+appelamule.com
+ulnawoyyzbljc.ru
+traffic-info-service.info
+traffic-tech-service.info
+traffic-gate-service.info
+cryptaloot.pro
+averoconnector.com
