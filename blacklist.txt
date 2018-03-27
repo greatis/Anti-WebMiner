@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.56
+Version=1.57
 [Hosts]
 cnhv.co
 gus.host
@@ -328,3 +328,15 @@ traffic-tech-service.info
 traffic-gate-service.info
 cryptaloot.pro
 averoconnector.com
+scaleway.ovh
+bauersagtnein.myeffect.net
+carry.myeffect.net
+jqcdn.download
+freecontent.date
+mxcdn1.now.sh
+mxcdn2.now.sh
+npcdn1.now.sh
+sxcdn02.now.sh
+sxcdn03.now.sh
+sxcdn04.now.sh
+sxcdn06.now.sh
