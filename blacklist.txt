@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.57
+Version=1.58
 [Hosts]
 cnhv.co
 gus.host
@@ -119,9 +119,6 @@ cryptobara.com
 vcfs6ip5h6.bid
 kickass.cd
 morningdigit.com
-thevideo.ch
-thevideo.us
-thevideo.me
 kinoprofi.org
 bablace.com
 webmining.co
@@ -217,7 +214,6 @@ smartoffer.site
 traffic.tc-clicks.com
 monitoringservice.co
 nullrefexcep.com
-estream.to
 vidzi.tv
 l33tsite.info
 doubleclick1.xyz
@@ -287,7 +283,6 @@ bestsecurepractice.com
 turnsocial.com
 turnsocial.now.sh
 toftofcal.com
-interestingz.pw
 vidfile.net
 worker.salon.com
 silimbompom.com
@@ -340,3 +335,15 @@ sxcdn02.now.sh
 sxcdn03.now.sh
 sxcdn04.now.sh
 sxcdn06.now.sh
+m1.streaming.estream.to
+m2.streaming.estream.to
+p1.assetscdn.stream
+p2.assetscdn.stream
+p3.assetscdn.stream
+www.assetscdn.stream
+s1.vidtod.me
+s2.vidtod.me
+s3.vidtod.me
+ws01cn.streamplay.to
+ws02cn.streamplay.to
+ws03cn.streamplay.to

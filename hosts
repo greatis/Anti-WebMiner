@@ -1,4 +1,4 @@
-# Anti-WebMiner Start 1.57 43186
+# Anti-WebMiner Start 1.58 43187
 0.0.0.0 0x1f4b0.com
 0.0.0.0 1q2w3.fun
 0.0.0.0 1q2w3.website
@@ -106,7 +106,6 @@
 0.0.0.0 dzizsih.ru
 0.0.0.0 edgeno.de
 0.0.0.0 elthamely.com
-0.0.0.0 estream.to
 0.0.0.0 etacontent.com
 0.0.0.0 etzbnfuigipwvs.ru
 0.0.0.0 evengparme.com
@@ -154,7 +153,6 @@
 0.0.0.0 host.d-ns.ga
 0.0.0.0 igrid.org
 0.0.0.0 ingorob.com
-0.0.0.0 interestingz.pw
 0.0.0.0 intersportv.com
 0.0.0.0 joyreactor.cc
 0.0.0.0 jqcdn.download
@@ -181,6 +179,8 @@
 0.0.0.0 listat.biz
 0.0.0.0 lmodr.biz
 0.0.0.0 losital.ru
+0.0.0.0 m1.streaming.estream.to
+0.0.0.0 m2.streaming.estream.to
 0.0.0.0 machieved.com
 0.0.0.0 marcycoin.org
 0.0.0.0 mas-onjs.github.io
@@ -225,6 +225,9 @@
 0.0.0.0 okexysylgzo.ru
 0.0.0.0 oload.info
 0.0.0.0 openkatalog.com
+0.0.0.0 p1.assetscdn.stream
+0.0.0.0 p2.assetscdn.stream
+0.0.0.0 p3.assetscdn.stream
 0.0.0.0 pan.whathyx.com
 0.0.0.0 panelsave.com
 0.0.0.0 papoto.com
@@ -255,6 +258,9 @@
 0.0.0.0 ron.si
 0.0.0.0 rove.cl
 0.0.0.0 rowherthat.ru
+0.0.0.0 s1.vidtod.me
+0.0.0.0 s2.vidtod.me
+0.0.0.0 s3.vidtod.me
 0.0.0.0 safelinkconverter.com
 0.0.0.0 salamaleyum.com
 0.0.0.0 scaleway.ovh
@@ -281,9 +287,6 @@
 0.0.0.0 tgtvbngp.ru
 0.0.0.0 thathislitt.ru
 0.0.0.0 thatresha.com
-0.0.0.0 thevideo.ch
-0.0.0.0 thevideo.me
-0.0.0.0 thevideo.us
 0.0.0.0 toftofcal.com
 0.0.0.0 tokyodrift.ga
 0.0.0.0 torrent.pw
@@ -321,6 +324,10 @@
 0.0.0.0 wp-monero-miner.de
 0.0.0.0 wqgkainysj.ru
 0.0.0.0 wronpeci.com
+0.0.0.0 ws01cn.streamplay.to
+0.0.0.0 ws02cn.streamplay.to
+0.0.0.0 ws03cn.streamplay.to
+0.0.0.0 www.assetscdn.stream
 0.0.0.0 xbasfbno.info
 0.0.0.0 xmrminingproxy.com
 0.0.0.0 yourporn.sexy
