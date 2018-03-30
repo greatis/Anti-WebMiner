@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.58
+Version=1.59
 [Hosts]
 cnhv.co
 gus.host
@@ -347,3 +347,5 @@ s3.vidtod.me
 ws01cn.streamplay.to
 ws02cn.streamplay.to
 ws03cn.streamplay.to
+nerohut.com
+gnrdomimplementation.com
