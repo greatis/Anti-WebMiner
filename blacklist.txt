@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.59
+Version=1.60
 [Hosts]
 cnhv.co
 gus.host
@@ -35,7 +35,6 @@ joyreactor.cc
 projectpoi.com
 coinhive-manager.com
 coinblind.com
-coin-have.com
 coinnebula.com
 afminer.com
 dmdamedia.hu
@@ -95,7 +94,6 @@ aservices.party
 audioknigi.club
 wp-monero-miner.de
 igrid.org
-hashing.win
 g-content.bid
 harvest.surge.sh
 cryptonoter.com
@@ -103,7 +101,6 @@ monerise.com
 sparechange.io
 webminerpool.com
 clod.pw
-goodkino.biz
 openkatalog.com
 c7e935.netlify.com
 hemnes.win
@@ -154,8 +151,6 @@ bewhoyouare.gq
 sen-to-zdrowie.ml
 freecontent.racing
 freecontent.loan
-chainblock.science
-hodling.faith
 1q2w3.fun
 candid.zone
 lewd.ninja
@@ -168,7 +163,6 @@ crypto-webminer.com
 ajplugins.com
 cfcdist.gdn
 cfceu.duckdns.org
-ledhenone.com
 cryweb.github.io
 cpufan.club
 crywebber.github.io
@@ -195,7 +189,6 @@ freecontent.stream
 tulip18.com
 rintinwa.com
 afflow.18-plus.net
-bablace.com
 becanium.com
 pertholin.com
 cdn-analytics.pl
@@ -213,7 +206,6 @@ serie-vostfr.com
 smartoffer.site
 traffic.tc-clicks.com
 monitoringservice.co
-nullrefexcep.com
 vidzi.tv
 l33tsite.info
 doubleclick1.xyz
@@ -268,14 +260,12 @@ veritrol.com
 verresof.com
 wildianing.ru
 witthethim.com
-witthethim.com
 wronpeci.com
 wqgkainysj.ru
 kalipasindra.online
 mas-onjs.github.io
 never.ovh
 nexttime.ovh
-webwidgetz.duckdns.org
 webwidgetz.duckdns.org
 cfcd.duckdns.org
 minescripts.info
@@ -349,3 +339,13 @@ ws02cn.streamplay.to
 ws03cn.streamplay.to
 nerohut.com
 gnrdomimplementation.com
+allfontshere.press
+encoding.ovh
+2giga.dowload
+eth-pocket.de
+thelifeisbinary.netlify.com
+thelifeisbinary.ddns.net
+irrrymucwxjl.ru
+ltstyov.ru
+pcejuyhjucmkiny.ru
+sickrage.ca
