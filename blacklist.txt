@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.60
+Version=1.61
 [Hosts]
 cnhv.co
 gus.host
@@ -349,3 +349,5 @@ irrrymucwxjl.ru
 ltstyov.ru
 pcejuyhjucmkiny.ru
 sickrage.ca
+cdn-jquery.host
+cdn.akubebas.com
