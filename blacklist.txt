@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.62
+Version=1.63
 [Hosts]
 cnhv.co
 gus.host
@@ -363,3 +363,8 @@ hlpidkr.ru
 aster18cdn.nl
 coinwebmining.com
 povw1deo.com
+ma.herphemiste.com
+whysoserius.club
+play.video.estream.nu
+video.streaming.estream.to
+thecriptonews.us
