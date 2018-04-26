@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.63
+Version=1.64
 [Hosts]
 cnhv.co
 gus.host
@@ -368,3 +368,4 @@ whysoserius.club
 play.video.estream.nu
 video.streaming.estream.to
 thecriptonews.us
+autologica.ga
