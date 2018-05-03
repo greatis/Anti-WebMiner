@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.64
+Version=1.65
 [Hosts]
 cnhv.co
 gus.host
@@ -369,3 +369,12 @@ play.video.estream.nu
 video.streaming.estream.to
 thecriptonews.us
 autologica.ga
+uoldid.ru
+nimiqtest.net
+imhvlhaelvvbrq.ru
+minercry.pt
+adplusplus.fr
+streamplay.me
+rmawm7mw.top
+basepush.com
+arizona-miner.tk
