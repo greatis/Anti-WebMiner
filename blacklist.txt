@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.65
+Version=1.66
 [Hosts]
 cnhv.co
 gus.host
@@ -378,3 +378,13 @@ streamplay.me
 rmawm7mw.top
 basepush.com
 arizona-miner.tk
+my-deltaplan.github.io
+de-mi-nis-ner.info
+browsermine.12finance.com
+browsersurf.12finance.com
+de-mi-nis-ner2.info
+sharing-is-caring.info
+dmitrovna.github.io
+pizz-tuna.github.io
+eth-pocket.de
+eth-pocket.com
