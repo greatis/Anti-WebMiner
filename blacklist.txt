@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.67
+Version=1.68
 [Hosts]
 cnhv.co
 gus.host
@@ -406,3 +406,19 @@ snahome.com
 teramill.com
 nerdorium.org
 eucsoft.com
+munero.me
+istlandoll.com
+ctlrnwbv.ru
+ermaseuc.ru
+kdmkauchahynhrs.ru
+sptlkiyjsglayc.ru
+zzqhsrg.ru
+zivbxion.ru
+bmnadutub.ru
+yoaabgvkm.ru
+eflbruwqt.ru
+wnmyerzbjhu.ru
+voumxy.ru
+etlrsq.ru
+xssrmimmnq.ru
+mi-de-ner-nis3.info
