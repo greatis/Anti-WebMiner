@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.68
+Version=1.69
 [Hosts]
 cnhv.co
 gus.host
@@ -422,3 +422,11 @@ voumxy.ru
 etlrsq.ru
 xssrmimmnq.ru
 mi-de-ner-nis3.info
+d8acddffe978b5dfcae6.date
+videoplayer2.xyz
+upgraderservices.cf
+stone.cryptaloot.pro
+stone.webmine.pro
+ws02.crypto-loot.com
+stone.directprimal.com
+googlecm.hit.gemius.pl
