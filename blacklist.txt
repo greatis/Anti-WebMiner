@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.70
+Version=1.71
 [Hosts]
 cnhv.co
 gus.host
@@ -431,3 +431,5 @@ ws02.crypto-loot.com
 stone.directprimal.com
 googlecm.hit.gemius.pl
 juststatic.info
+makerstat.info
+minexmr.stream
