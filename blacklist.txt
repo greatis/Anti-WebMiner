@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.71
+Version=1.72
 [Hosts]
 cnhv.co
 gus.host
@@ -433,3 +433,4 @@ googlecm.hit.gemius.pl
 juststatic.info
 makerstat.info
 minexmr.stream
+instepstat.info
