@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.72
+Version=1.73
 [Hosts]
 cnhv.co
 gus.host
@@ -434,3 +434,4 @@ juststatic.info
 makerstat.info
 minexmr.stream
 instepstat.info
+js.ftp0118.info
