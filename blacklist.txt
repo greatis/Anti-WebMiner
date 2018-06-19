@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.73
+Version=1.74
 [Hosts]
 cnhv.co
 gus.host
@@ -435,3 +435,7 @@ makerstat.info
 minexmr.stream
 instepstat.info
 js.ftp0118.info
+acbp0020171456.page.tl
+freshrefreshnerer186.info
+freshrefreshnerer186rb.info
+vuryua.ru
