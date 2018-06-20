@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.74
+Version=1.75
 [Hosts]
 cnhv.co
 gus.host
@@ -439,3 +439,4 @@ acbp0020171456.page.tl
 freshrefreshnerer186.info
 freshrefreshnerer186rb.info
 vuryua.ru
+update-your-pc.info
