@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.78
+Version=1.79
 [Hosts]
 cnhv.co
 gus.host
@@ -445,3 +445,6 @@ apdrive.win
 stats.infogenservice.com
 zminer.zaloapp.com
 vkcdnservice.com
+de-ner-mi-nis4.info
+refreshnerer27.info
+refreshnerer27rb.info
