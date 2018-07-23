@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.80
+Version=1.81
 [Hosts]
 cnhv.co
 gus.host
@@ -178,7 +178,6 @@ ewtuyytdf45.com
 mutuza.win
 vzhjnorkudcxbiy.com
 sleazyneasy.com
-player.h-cdn.com
 shrink-service.it
 cfcnet.gdn
 cfcs1.duckdns.org
@@ -470,3 +469,4 @@ play.vb.wearesaudis.net
 xgefmxd.ru
 minexmr.stream
 mollnia.com
+ugmfvqsu.ru
