@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.81
+Version=1.82
 [Hosts]
 cnhv.co
 gus.host
@@ -470,3 +470,4 @@ xgefmxd.ru
 minexmr.stream
 mollnia.com
 ugmfvqsu.ru
+xmrmsft.com
