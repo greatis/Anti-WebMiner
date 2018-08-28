@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.82
+Version=1.83
 [Hosts]
 cnhv.co
 gus.host
@@ -456,8 +456,6 @@ djfhwosjck.bid
 najsiejfnc.win
 zndaowjdnf.stream
 yqaywudifu.date
-www.640906598832872.update-your-pc.info
-www.610660288068983.update-your-pc.info
 gramombird.com
 thersprens.com
 flowplayer.space
@@ -471,3 +469,18 @@ minexmr.stream
 mollnia.com
 ugmfvqsu.ru
 xmrmsft.com
+jssdk.beetv.net
+wbmwss.beetv.net
+jlzebszkilcz.ru
+lambdafoobar.de
+cashbeet.com
+serv1swork.com
+g1thub.com
+f1tbit.com
+str1kee.com
+hostingcloud.science
+reauthenticator.com
+moonify.io
+wmtech.website
+swiftmining.win
+vidoza.net
