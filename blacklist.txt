@@ -1,5 +1,5 @@
 [Anti-WebMiner]
-Version=1.83
+Version=1.84
 [Hosts]
 cnhv.co
 gus.host
@@ -484,3 +484,7 @@ moonify.io
 wmtech.website
 swiftmining.win
 vidoza.net
+ultra-cdn.pl
+powvideo.net
+nextbdom.ru
+vkcdnservice.appspot.com
